@@ -1,9 +1,0 @@
-com\shopping\framework\token\config\ResultStatus.class
-com\shopping\framework\token\authorization\resolvers\CurrentUserMethodArgumentResolver.class
-com\shopping\framework\token\model\CheckResult.class
-com\shopping\framework\token\config\MvcConfig.class
-com\shopping\framework\token\authorization\annotation\CacheUser.class
-com\shopping\framework\token\authorization\annotation\CurrentUser.class
-com\shopping\framework\token\authorization\resolvers\CacheUserMethodArgumentResolver.class
-com\shopping\framework\token\authorization\manager\JwtTokenUtils.class
-com\shopping\framework\token\config\Constants.class
