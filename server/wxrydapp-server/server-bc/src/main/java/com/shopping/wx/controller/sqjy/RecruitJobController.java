@@ -7,12 +7,11 @@ import com.shopping.wx.model.JobCategory;
 import com.shopping.wx.model.RecruitJob;
 import com.shopping.wx.pojo.dto.recruit_job.JobInfoDTO;
 import com.shopping.wx.pojo.vo.basic.PagingParam;
-import com.shopping.wx.pojo.vo.common.Position;
+import com.shopping.wx.pojo.vo.common.Location;
 import com.shopping.wx.pojo.vo.recruit_job.RecruitJobSearchCondition;
 import com.shopping.wx.service.basic.CrudService;
 import com.shopping.wx.service.community_recruitment.JobCategoryService;
 import com.shopping.wx.service.community_recruitment.RecruitJobService;
-import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -47,7 +46,7 @@ public class RecruitJobController extends CrudController<RecruitJob, String> {
     }
 
     @PostMapping("/paged-by-distance")
-    ActionResult<PageInfo<JobInfoDTO>> pagedByDistance(@RequestBody PagingParam<Position> pagingParam) {
+    ActionResult<PageInfo<JobInfoDTO>> pagedByDistance(@RequestBody PagingParam<Location> pagingParam) {
         return ActionResult.ok(
                 PageInfo.of(recruitJobService.pagedByDistance(pagingParam))
         );

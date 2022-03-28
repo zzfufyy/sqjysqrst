@@ -4,7 +4,7 @@ import com.shopping.wx.managed_mapper.community_recruitment.IRecruitJobMapper;
 import com.shopping.wx.model.RecruitJob;
 import com.shopping.wx.pojo.dto.recruit_job.JobInfoDTO;
 import com.shopping.wx.pojo.vo.basic.PagingParam;
-import com.shopping.wx.pojo.vo.common.Position;
+import com.shopping.wx.pojo.vo.common.Location;
 import com.shopping.wx.pojo.vo.recruit_job.RecruitJobSearchCondition;
 import com.shopping.wx.service.basic.impl.CrudServiceImpl;
 import com.shopping.wx.service.community_recruitment.RecruitJobService;
@@ -54,7 +54,7 @@ public class RecruitJobServiceImpl extends CrudServiceImpl<RecruitJob> implement
      * @return 结果
      */
     @Override
-    public List<JobInfoDTO> pagedByDistance(PagingParam<Position> positionPagingParam) {
+    public List<JobInfoDTO> pagedByDistance(PagingParam<Location> positionPagingParam) {
         startPage(positionPagingParam.getPage());
         return recruitJobMapper.pagedByDistance(positionPagingParam.getCondition());
     }

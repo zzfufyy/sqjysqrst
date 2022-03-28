@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shopping.wx.managed_mapper.community_recruitment.IRecruitJobMapper">
+
+    <!--    对于 POJO 中的实体类，需要添加此 ResultMap 来映射字段-->
+    <resultMap id="JobInfoDTO" type="com.shopping.wx.pojo.dto.recruit_job.JobInfoDTO">
+        <result column="job_id" jdbcType="INTEGER" property="jobId"/>
+        <result column="company_id" jdbcType="VARCHAR" property="companyId"/>
+        <result column="job_name" jdbcType="VARCHAR" property="jobName"/>
+        <result column="company_name" jdbcType="VARCHAR" property="companyName"/>
+        <result column="portrait_path" jdbcType="VARCHAR" property="portraitPath"/>
+        <result column="job_salary_min" jdbcType="INTEGER" property="jobSalaryMin"/>
+        <result column="job_salary_max" jdbcType="INTEGER" property="jobSalaryMax"/>
+        <result column="distance" jdbcType="DOUBLE" property="distance"/>
+    </resultMap>
+
+    <select id="pagedByDistance" resultMap="JobInfoDTO">
+        SELECT recruit_job.`id`                                             AS `job_id`,
+               recruit_company.`id`                                         AS `company_id`,
+               recruit_job.`job_name`,
+               recruit_company.`company_name`,
+               recruit_company.`portrait_path`,
+               recruit_job.`job_salary_min`,
+               recruit_job.`job_salary_max`,
+               ST_DISTANCE_SPHERE(
+                       POINT(#{location.longitude}, #{location.latitude}),
+                       POINT(recruit_company.`lon`, recruit_company.`lat`)) AS `distance`
+        FROM recruit_job
+                 LEFT JOIN recruit_company ON recruit_job.`company_uuid` = recruit_company.`id`
+        WHERE recruit_job.`status` != - 1
+          AND recruit_company.`status` != - 1
+          AND recruit_company.`flag_identification` = 1
+        ORDER BY `distance`
+    </select>
+</mapper>

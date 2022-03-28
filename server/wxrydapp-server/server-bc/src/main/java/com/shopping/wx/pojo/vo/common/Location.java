@@ -8,7 +8,7 @@ import lombok.Data;
  */
 
 @Data
-public class Position {
+public class Location {
     /**
      * 经度
      */
