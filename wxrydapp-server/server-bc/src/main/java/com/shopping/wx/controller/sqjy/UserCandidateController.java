@@ -43,7 +43,7 @@ public class UserCandidateController extends CrudController<UserCandidate, Strin
     }
 
     @RequestMapping("/info")
-    public ActionResult<UserCandidate> info(String openid) {
+    public ActionResult<UserCandidate> info(@RequestParam String openid) {
         return ActionResult.ok(query(openid));
     }
 
