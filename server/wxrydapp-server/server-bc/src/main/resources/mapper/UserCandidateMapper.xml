@@ -13,6 +13,8 @@
     <result column="telephone" jdbcType="VARCHAR" property="telephone" />
     <result column="email" jdbcType="VARCHAR" property="email" />
     <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="lon" jdbcType="DOUBLE" property="lon" />
+    <result column="lat" jdbcType="DOUBLE" property="lat" />
     <result column="marraige_state" jdbcType="TINYINT" property="marraigeState" />
     <result column="political_state" jdbcType="TINYINT" property="politicalState" />
     <result column="introduction" jdbcType="VARCHAR" property="introduction" />
@@ -36,8 +38,8 @@
     <!--
       WARNING - @mbg.generated
     -->
-    id, real_name, identity_card, gender, birthday, telephone, email, address, marraige_state, 
-    political_state, introduction, personnel_state, portrait_path, expect_salary_min, 
+    id, real_name, identity_card, gender, birthday, telephone, email, address, lon, lat, 
+    marraige_state, political_state, introduction, personnel_state, portrait_path, expect_salary_min, 
     expect_salary_max, expect_category_id, expect_community_id, flag_identification, 
     count_view, community_uuid, priority, status, create_time, ext1, ext2, ext3
   </sql>

@@ -22,4 +22,5 @@ public interface IRecruitJobMapper {
      */
     List<JobInfoDTO> pagedByDistance(@Param("location") Location location);
 
+
 }
