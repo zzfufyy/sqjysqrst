@@ -1,17 +1,25 @@
 package com.shopping.wx.controller.sqjy;
 
+import com.alibaba.fastjson.JSONObject;
 import com.github.pagehelper.PageInfo;
 import com.shopping.base.foundation.result.ActionResult;
+import com.shopping.wx.conf.DB;
+import com.shopping.wx.conf.Page;
 import com.shopping.wx.controller.basic.CrudController;
+import com.shopping.wx.entity.JSON;
 import com.shopping.wx.model.JobCategory;
 import com.shopping.wx.model.UserRecruiter;
 import com.shopping.wx.pojo.vo.basic.PagingParam;
 import com.shopping.wx.pojo.vo.job_category.JobCategorySearchCondition;
 import com.shopping.wx.service.basic.CrudService;
 import com.shopping.wx.service.community_recruitment.JobCategoryService;
+import com.shopping.wx.util.UUIDUtils;
+import org.nutz.json.Json;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import tk.mybatis.mapper.entity.Example;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -26,6 +34,8 @@ public class JobCategoryController extends CrudController<JobCategory, String> {
     @Autowired
     private JobCategoryService jobCategoryService;
 
+    @Autowired
+    private DB db;
 
     @RequestMapping("/page")
     public ActionResult<PageInfo<JobCategory>> page(@RequestBody PagingParam<JobCategorySearchCondition> pagingParam) {
@@ -56,7 +66,37 @@ public class JobCategoryController extends CrudController<JobCategory, String> {
         }
         return ActionResult.ok(jobCategoryService.list(pagingParam));
     }
-
+    //查询岗位
+    @RequestMapping("/listbyyx")
+    public JSON listbyyx(String name, String keyword, Page page){
+        JSON json = new JSON();
+        page.setPage(1);
+        page.setRows(5);
+        Example example = new Example(JobCategory.class);
+        Example.Criteria criteria =example.createCriteria();
+        criteria.andEqualTo("status",0);
+        if(name!=null&&!name.equals("")){
+            System.out.println(name);
+            criteria.andLike("categoryName","%"+name+"%");
+//            criteria.andLike("keyword","%"+name+"%");
+        }
+        example.setOrderByClause("count_view desc,priority desc");
+        List<JobCategory> jobCategoryList =db.selectPageByExample(JobCategory.class,example,page);
+//        if(jobCategoryList.size()==0){
+//            JobCategory jobCategory = new JobCategory();
+//            jobCategory.setId(UUIDUtils.randomUUID());
+//            jobCategory.setCategoryName(name);
+//            jobCategory.setCreateTime(new Date());
+//            jobCategory.setStatus(0);
+//            jobCategory.setCountView(0);
+//            jobCategory.setPriority(0);
+//            db.insert(jobCategory);
+//
+//        }
+        json.setFlag(true);
+        json.setObj(jobCategoryList);
+        return json;
+    }
 
     @Override
     protected CrudService<JobCategory> getService() {
