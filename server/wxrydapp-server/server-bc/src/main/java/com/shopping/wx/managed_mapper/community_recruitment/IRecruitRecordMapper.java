@@ -1,6 +1,7 @@
 package com.shopping.wx.managed_mapper.community_recruitment;
 
-import com.shopping.wx.pojo.dto.recruit_record.JobDeliveredDTO;
+import com.shopping.wx.pojo.dto.recruit_record.RecordForCandidateDTO;
+import com.shopping.wx.pojo.dto.recruit_record.RecordForRecruiterDTO;
 import com.shopping.wx.pojo.vo.common.Location;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -17,10 +18,17 @@ public interface IRecruitRecordMapper {
     /**
      * 根据 用户openid 和位置查询列表
      *
-     * @param location 位置（经纬度）
+     * @param candidateOpenid
+     * @param location        位置（经纬度）
      * @return 结果
      */
-    List<JobDeliveredDTO> listDeliveredByCandidateOpenid(@Param("candidateOpenid") String candidateOpenid, @Param("location") Location location);
+    List<RecordForCandidateDTO> listRecordPlusByCandidateOpenid(@Param("candidateOpenid") String candidateOpenid, @Param("location") Location location);
 
-    
+    /**
+     * 根据公司id 返回查询记录的列表
+     *
+     * @param companyUuid
+     * @return java.util.List<com.shopping.wx.pojo.dto.recruit_record.RecordForCandidateDTO>
+     */
+    List<RecordForRecruiterDTO> listRecordPlusByCompanyUuid(@Param("companyUuid") String companyUuid);
 }

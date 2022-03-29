@@ -3,13 +3,12 @@
 <mapper namespace="com.shopping.wx.managed_mapper.community_recruitment.IRecruitRecordMapper">
 
     <!--    对于 POJO 中的实体类，需要添加此 ResultMap 来映射字段-->
-    <resultMap id="JobDeliveredDTO" type="com.shopping.wx.pojo.dto.recruit_record.JobDeliveredDTO">
+    <resultMap id="RecordForCandidateDTO" type="com.shopping.wx.pojo.dto.recruit_record.RecordForCandidateDTO">
         <result column="flow_recruit" jdbcType="INTEGER" property="flowRecruit"/>
         <result column="candidate_openid" jdbcType="VARCHAR" property="candidateOpenid"/>
         <result column="recruiter_openid" jdbcType="VARCHAR" property="recruiterOpenid"/>
         <result column="company_uuid" jdbcType="VARCHAR" property="companyUuid"/>
         <result column="job_uuid" jdbcType="VARCHAR" property="jobUuid"/>
-
         <result column="job_name" jdbcType="VARCHAR" property="jobName"/>
         <result column="company_name" jdbcType="VARCHAR" property="companyName"/>
         <result column="portrait_path" jdbcType="VARCHAR" property="portraitPath"/>
@@ -18,8 +17,7 @@
         <result column="telephone" jdbcType="VARCHAR" property="telephone"/>
         <result column="distance" jdbcType="DOUBLE" property="distance"/>
     </resultMap>
-
-    <select id="listDeliveredByCandidateOpenid" resultMap="JobDeliveredDTO">
+    <select id="listRecordPlusByCandidateOpenid" resultMap="RecordForCandidateDTO">
         SELECT
            rr.flow_recruit          AS flow_recruit,
            rr.candidate_openid      AS candidate_openid,
@@ -49,4 +47,50 @@
               rr.candidate_openid = #{candidateOpenid}
         ORDER BY distance ASC
     </select>
+
+    <resultMap id="RecordForRecruiterDTO" type="com.shopping.wx.pojo.dto.recruit_record.RecordForRecruiterDTO">
+        <result column="record_uuid" jdbcType="VARCHAR" property="recordUuid"/>
+        <result column="flow_recruit" jdbcType="INTEGER" property="flowRecruit"/>
+        <result column="candidate_openid" jdbcType="VARCHAR" property="candidateOpenid"/>
+        <result column="recruiter_openid" jdbcType="VARCHAR" property="recruiterOpenid"/>
+        <result column="company_uuid" jdbcType="VARCHAR" property="companyUuid"/>
+        <result column="job_uuid" jdbcType="VARCHAR" property="jobUuid"/>
+        <result column="job_name" jdbcType="VARCHAR" property="jobName"/>
+        <result column="company_name" jdbcType="VARCHAR" property="companyName"/>
+        <result column="job_salary_min" jdbcType="INTEGER" property="jobSalaryMin"/>
+        <result column="job_salary_max" jdbcType="INTEGER" property="jobSalaryMax"/>
+        <result column="real_name" jdbcType="INTEGER" property="realName"/>
+        <result column="gender" jdbcType="INTEGER" property="gender"/>
+        <result column="birthday" jdbcType="TIMESTAMP" property="birthday"/>
+        <result column="telephone" jdbcType="VARCHAR" property="telephone"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+    </resultMap>
+    <select id="listRecordPlusByCompanyUuid" resultMap="RecordForRecruiterDTO">
+        SELECT
+           rr.id                    AS record_uuid,
+           rr.flow_recruit          AS flow_recruit,
+           rr.candidate_openid      AS candidate_openid,
+           rr.recruiter_openid      AS recruiter_openid,
+           rr.company_uuid          AS company_uuid,
+           rr.job_uuid              AS job_uuid,
+           rj.job_name              AS job_name,
+           rj.company_name          AS company_name,
+           rj.job_salary_max        AS job_salary_max,
+           rj.job_salary_min        AS job_salary_min,
+           uc.real_name             AS real_name,
+           uc.gender                AS gender,
+           uc.birthday              AS birthday,
+           uc.telephone             AS telephone,
+          rr.create_time           AS create_time
+        FROM recruit_record rr
+        LEFT JOIN recruit_job rj
+           ON rr.job_uuid = rj.id
+        LEFT JOIN user_candidate uc
+           ON rr.candidate_openid = uc.id
+        WHERE rr.status != -1 AND
+              rj.status != -1 AND
+              rr.company_uuid = #{companyUuid}
+        ORDER BY create_time desc
+    </select>
+
 </mapper>

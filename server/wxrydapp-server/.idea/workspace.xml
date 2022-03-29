@@ -20,28 +20,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4699e673-5a9b-44a2-86c0-0568873e54fe" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/server-bc/src/main/java/com/shopping/wx/managed_mapper/community_recruitment/IRecruitRecordMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server-bc/src/main/java/com/shopping/wx/pojo/dto/recruit_record/JobDeliveredDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/server-bc/src/main/resources/managed_mapper/IRecruitRecordMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/server-bc/src/main/java/com/shopping/wx/pojo/dto/recruit_record/RecordForRecruiterDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/base/base-project.iml" beforeDir="false" afterPath="$PROJECT_DIR$/base/base-project.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/framework/spring-boot-starter-DynamicDruid/spring-boot-starter-DynamicDruid.iml" beforeDir="false" afterPath="$PROJECT_DIR$/framework/spring-boot-starter-DynamicDruid/spring-boot-starter-DynamicDruid.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/framework/spring-boot-starter-druid/spring-boot-starter-druid.iml" beforeDir="false" afterPath="$PROJECT_DIR$/framework/spring-boot-starter-druid/spring-boot-starter-druid.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/framework/spring-boot-starter-oss/spring-boot-starter-oss.iml" beforeDir="false" afterPath="$PROJECT_DIR$/framework/spring-boot-starter-oss/spring-boot-starter-oss.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/framework/spring-boot-starter-sms/spring-boot-starter-sms.iml" beforeDir="false" afterPath="$PROJECT_DIR$/framework/spring-boot-starter-sms/spring-boot-starter-sms.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/framework/spring-boot-starter-swagger/spring-boot-starter-swagger.iml" beforeDir="false" afterPath="$PROJECT_DIR$/framework/spring-boot-starter-swagger/spring-boot-starter-swagger.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/framework/spring-boot-starter-token/spring-boot-starter-token.iml" beforeDir="false" afterPath="$PROJECT_DIR$/framework/spring-boot-starter-token/spring-boot-starter-token.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server-bc/server-bc.iml" beforeDir="false" afterPath="$PROJECT_DIR$/server-bc/server-bc.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server-bc/src/main/java/com/shopping/wx/controller/sqjy/RecruitRecordController.java" beforeDir="false" afterPath="$PROJECT_DIR$/server-bc/src/main/java/com/shopping/wx/controller/sqjy/RecruitRecordController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server-bc/src/main/java/com/shopping/wx/managed_mapper/community_recruitment/IRecruitJobMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/server-bc/src/main/java/com/shopping/wx/managed_mapper/community_recruitment/IRecruitJobMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server-bc/src/main/java/com/shopping/wx/mapper/UserCandidateMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/server-bc/src/main/java/com/shopping/wx/mapper/UserCandidateMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server-bc/src/main/java/com/shopping/wx/model/UserCandidate.java" beforeDir="false" afterPath="$PROJECT_DIR$/server-bc/src/main/java/com/shopping/wx/model/UserCandidate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server-bc/src/main/java/com/shopping/wx/managed_mapper/community_recruitment/IRecruitRecordMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/server-bc/src/main/java/com/shopping/wx/managed_mapper/community_recruitment/IRecruitRecordMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server-bc/src/main/java/com/shopping/wx/pojo/dto/recruit_record/JobDeliveredDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/server-bc/src/main/java/com/shopping/wx/pojo/dto/recruit_record/RecordForCandidateDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server-bc/src/main/java/com/shopping/wx/service/community_recruitment/RecruitRecordService.java" beforeDir="false" afterPath="$PROJECT_DIR$/server-bc/src/main/java/com/shopping/wx/service/community_recruitment/RecruitRecordService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server-bc/src/main/java/com/shopping/wx/service/community_recruitment/impl/RecruitRecordServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/server-bc/src/main/java/com/shopping/wx/service/community_recruitment/impl/RecruitRecordServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server-bc/src/main/resources/mapper/UserCandidateMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/server-bc/src/main/resources/mapper/UserCandidateMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server-bc/src/main/resources/mybatis-generator.xml" beforeDir="false" afterPath="$PROJECT_DIR$/server-bc/src/main/resources/mybatis-generator.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server-bc/src/main/resources/managed_mapper/IRecruitRecordMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/server-bc/src/main/resources/managed_mapper/IRecruitRecordMapper.xml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/parent/target/" />
     <ignored path="$PROJECT_DIR$/framework/target/" />
@@ -66,10 +52,10 @@
   <component name="FileEditorManager">
     <leaf>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/server-bc/src/main/java/com/shopping/wx/managed_mapper/community_recruitment/IRecruitRecordMapper.java">
+        <entry file="file://$PROJECT_DIR$/server-bc/src/main/java/com/shopping/wx/pojo/dto/recruit_record/RecordForRecruiterDTO.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="234">
-              <caret line="22" column="56" selection-start-line="22" selection-start-column="56" selection-end-line="22" selection-end-column="56" />
+            <state relative-caret-position="153">
+              <caret line="20" column="19" lean-forward="true" selection-start-line="20" selection-start-column="19" selection-end-line="20" selection-end-column="19" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -77,11 +63,44 @@
           </provider>
         </entry>
       </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/server-bc/src/main/java/com/shopping/wx/model/UserRecruiter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="189">
+              <caret line="62" column="16" selection-start-line="62" selection-start-column="12" selection-end-line="62" selection-end-column="16" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/server-bc/src/main/resources/managed_mapper/IRecruitRecordMapper.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="108">
+              <caret line="60" column="47" selection-start-line="60" selection-start-column="47" selection-end-line="60" selection-end-column="47" />
+              <folding>
+                <element signature="n#select#0;n#mapper#0;n#!!top" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/server-bc/src/main/java/com/shopping/wx/controller/sqjy/RecruitRecordController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="197">
-              <caret line="61" column="10" lean-forward="true" selection-start-line="61" selection-start-column="10" selection-end-line="61" selection-end-column="10" />
+            <state relative-caret-position="816">
+              <caret line="76" column="73" selection-start-line="76" selection-start-column="46" selection-end-line="76" selection-end-column="73" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/server-bc/src/main/java/com/shopping/wx/managed_mapper/community_recruitment/IRecruitRecordMapper.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="303">
+              <caret line="24" column="63" selection-start-line="24" selection-start-column="63" selection-end-line="24" selection-end-column="63" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -89,44 +108,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/server-bc/src/main/java/com/shopping/wx/service/community_recruitment/RecruitRecordService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="177">
-              <caret line="17" column="32" lean-forward="true" selection-start-line="17" selection-start-column="32" selection-end-line="17" selection-end-column="32" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/server-bc/src/main/resources/managed_mapper/IRecruitRecordMapper.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="54">
-              <caret line="17" column="76" lean-forward="true" selection-start-line="17" selection-start-column="76" selection-end-line="17" selection-end-column="76" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/server-bc/src/main/java/com/shopping/wx/managed_mapper/community_recruitment/IRecruitJobMapper.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="5" selection-start-line="5" selection-end-line="6" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/server-bc/src/main/resources/managed_mapper/IRecruitJobMapper.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="432">
-              <caret line="16" column="54" selection-start-line="16" selection-start-column="44" selection-end-line="16" selection-end-column="54" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/server-bc/src/main/java/com/shopping/wx/service/community_recruitment/impl/RecruitJobServiceImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1221">
-              <caret line="2" column="60" selection-start-line="2" selection-start-column="60" selection-end-line="2" selection-end-column="60" />
+            <state relative-caret-position="168">
+              <caret line="18" column="32" selection-start-line="18" selection-start-column="32" selection-end-line="18" selection-end-column="32" />
             </state>
           </provider>
         </entry>
@@ -134,8 +117,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/server-bc/src/main/java/com/shopping/wx/service/community_recruitment/impl/RecruitRecordServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1161">
-              <caret line="43" column="63" selection-start-line="43" selection-start-column="63" selection-end-line="43" selection-end-column="63" />
+            <state relative-caret-position="168">
+              <caret line="24" column="14" lean-forward="true" selection-start-line="24" selection-start-column="14" selection-end-line="24" selection-end-column="14" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -144,19 +127,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/server-bc/src/main/java/com/shopping/wx/pojo/vo/common/Location.java">
+        <entry file="file://$PROJECT_DIR$/server-bc/src/main/resources/mapper/UserCommunityMapper.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="104">
-              <caret line="5" column="14" lean-forward="true" selection-start-line="5" selection-start-column="14" selection-end-line="5" selection-end-column="14" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/server-bc/src/main/java/com/shopping/wx/controller/sqjy/RecruitJobController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-49">
-              <caret line="47" column="19" selection-start-line="47" selection-start-column="19" selection-end-line="47" selection-end-column="36" />
+            <state relative-caret-position="216">
+              <caret line="17" column="52" selection-start-line="17" selection-start-column="43" selection-end-line="17" selection-end-column="52" />
             </state>
           </provider>
         </entry>
@@ -197,11 +171,14 @@
         <option value="$PROJECT_DIR$/server-bc/src/main/java/com/shopping/wx/pojo/dto/recruit_job/DeliveredJobDTO.java" />
         <option value="$PROJECT_DIR$/server-bc/src/main/resources/mybatis-generator.xml" />
         <option value="$PROJECT_DIR$/server-bc/src/main/java/com/shopping/wx/managed_mapper/community_recruitment/IRecruitJobMapper.java" />
-        <option value="$PROJECT_DIR$/server-bc/src/main/resources/managed_mapper/IRecruitRecordMapper.xml" />
-        <option value="$PROJECT_DIR$/server-bc/src/main/java/com/shopping/wx/managed_mapper/community_recruitment/IRecruitRecordMapper.java" />
+        <option value="$PROJECT_DIR$/server-bc/src/main/java/com/shopping/wx/pojo/dto/recruit_record/JobDeliveredDTO.java" />
+        <option value="$PROJECT_DIR$/server-bc/src/main/java/com/shopping/wx/pojo/dto/recruit_record/RecordForCandidateDTO.java" />
+        <option value="$PROJECT_DIR$/server-bc/src/main/java/com/shopping/wx/controller/sqjy/RecruitRecordController.java" />
         <option value="$PROJECT_DIR$/server-bc/src/main/java/com/shopping/wx/service/community_recruitment/RecruitRecordService.java" />
         <option value="$PROJECT_DIR$/server-bc/src/main/java/com/shopping/wx/service/community_recruitment/impl/RecruitRecordServiceImpl.java" />
-        <option value="$PROJECT_DIR$/server-bc/src/main/java/com/shopping/wx/controller/sqjy/RecruitRecordController.java" />
+        <option value="$PROJECT_DIR$/server-bc/src/main/java/com/shopping/wx/managed_mapper/community_recruitment/IRecruitRecordMapper.java" />
+        <option value="$PROJECT_DIR$/server-bc/src/main/java/com/shopping/wx/pojo/dto/recruit_record/RecordForRecruiterDTO.java" />
+        <option value="$PROJECT_DIR$/server-bc/src/main/resources/managed_mapper/IRecruitRecordMapper.xml" />
       </list>
     </option>
   </component>
@@ -322,6 +299,18 @@
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="shopping" type="462c0819:PsiDirectoryNode" />
               <item name="wx" type="462c0819:PsiDirectoryNode" />
+              <item name="managed_mapper" type="462c0819:PsiDirectoryNode" />
+              <item name="community_recruitment" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="wxrydapp-server" type="b2602c69:ProjectViewProjectNode" />
+              <item name="wxrydapp-server" type="462c0819:PsiDirectoryNode" />
+              <item name="server-bc" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="shopping" type="462c0819:PsiDirectoryNode" />
+              <item name="wx" type="462c0819:PsiDirectoryNode" />
               <item name="pojo" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -346,7 +335,21 @@
               <item name="shopping" type="462c0819:PsiDirectoryNode" />
               <item name="wx" type="462c0819:PsiDirectoryNode" />
               <item name="pojo" type="462c0819:PsiDirectoryNode" />
-              <item name="vo" type="462c0819:PsiDirectoryNode" />
+              <item name="dto" type="462c0819:PsiDirectoryNode" />
+              <item name="recruit_job" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="wxrydapp-server" type="b2602c69:ProjectViewProjectNode" />
+              <item name="wxrydapp-server" type="462c0819:PsiDirectoryNode" />
+              <item name="server-bc" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="shopping" type="462c0819:PsiDirectoryNode" />
+              <item name="wx" type="462c0819:PsiDirectoryNode" />
+              <item name="pojo" type="462c0819:PsiDirectoryNode" />
+              <item name="dto" type="462c0819:PsiDirectoryNode" />
+              <item name="recruit_record" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="wxrydapp-server" type="b2602c69:ProjectViewProjectNode" />
@@ -359,7 +362,6 @@
               <item name="wx" type="462c0819:PsiDirectoryNode" />
               <item name="pojo" type="462c0819:PsiDirectoryNode" />
               <item name="vo" type="462c0819:PsiDirectoryNode" />
-              <item name="common" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="wxrydapp-server" type="b2602c69:ProjectViewProjectNode" />
@@ -419,7 +421,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1648529060229" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1648545068281" />
     <property name="dart.analysis.tool.window.visible" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Project" />
@@ -434,6 +436,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.shopping.wx.pojo.dto.recruit_record" />
       <recent name="com.shopping.wx.managed_mapper.community_recruitment" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
@@ -474,12 +477,12 @@
       <workItem from="1648460300866" duration="153000" />
       <workItem from="1648460510044" duration="269000" />
       <workItem from="1648460864282" duration="1783000" />
-      <workItem from="1648515615643" duration="9759000" />
+      <workItem from="1648515615643" duration="15579000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="9759000" />
+    <option name="totallyTimeSpent" value="15579000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -631,13 +634,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server-bc/src/main/java/com/shopping/wx/pojo/dto/recruit_record/JobDeliveredDTO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="183">
-          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/server-bc/src/main/resources/config/application-dev.properties">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="396">
@@ -687,34 +683,48 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server-bc/src/main/resources/managed_mapper/IRecruitRecordMapper.xml">
+    <entry file="file://$PROJECT_DIR$/server-bc/src/main/java/com/shopping/wx/pojo/dto/recruit_record/RecordForCandidateDTO.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="17" column="76" lean-forward="true" selection-start-line="17" selection-start-column="76" selection-end-line="17" selection-end-column="76" />
+        <state relative-caret-position="102">
+          <caret line="11" column="36" lean-forward="true" selection-start-line="11" selection-start-column="36" selection-end-line="11" selection-end-column="36" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server-bc/src/main/java/com/shopping/wx/managed_mapper/community_recruitment/IRecruitRecordMapper.java">
+    <entry file="file://$PROJECT_DIR$/server-bc/src/main/resources/mapper/UserCommunityMapper.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="22" column="56" selection-start-line="22" selection-start-column="56" selection-end-line="22" selection-end-column="56" />
+        <state relative-caret-position="216">
+          <caret line="17" column="52" selection-start-line="17" selection-start-column="43" selection-end-line="17" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server-bc/src/main/java/com/shopping/wx/model/UserRecruiter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="62" column="16" selection-start-line="62" selection-start-column="12" selection-end-line="62" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server-bc/src/main/java/com/shopping/wx/service/community_recruitment/RecruitRecordService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="18" column="32" selection-start-line="18" selection-start-column="32" selection-end-line="18" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server-bc/src/main/java/com/shopping/wx/service/community_recruitment/impl/RecruitRecordServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="24" column="14" lean-forward="true" selection-start-line="24" selection-start-column="14" selection-end-line="24" selection-end-column="14" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/server-bc/src/main/java/com/shopping/wx/service/community_recruitment/RecruitRecordService.java">
+    <entry file="file://$PROJECT_DIR$/server-bc/src/main/java/com/shopping/wx/managed_mapper/community_recruitment/IRecruitRecordMapper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="177">
-          <caret line="17" column="32" lean-forward="true" selection-start-line="17" selection-start-column="32" selection-end-line="17" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/server-bc/src/main/java/com/shopping/wx/service/community_recruitment/impl/RecruitRecordServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1161">
-          <caret line="43" column="63" selection-start-line="43" selection-start-column="63" selection-end-line="43" selection-end-column="63" />
+        <state relative-caret-position="303">
+          <caret line="24" column="63" selection-start-line="24" selection-start-column="63" selection-end-line="24" selection-end-column="63" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -723,8 +733,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/server-bc/src/main/java/com/shopping/wx/controller/sqjy/RecruitRecordController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="197">
-          <caret line="61" column="10" lean-forward="true" selection-start-line="61" selection-start-column="10" selection-end-line="61" selection-end-column="10" />
+        <state relative-caret-position="816">
+          <caret line="76" column="73" selection-start-line="76" selection-start-column="46" selection-end-line="76" selection-end-column="73" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server-bc/src/main/java/com/shopping/wx/pojo/dto/recruit_record/RecordForRecruiterDTO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="20" column="19" lean-forward="true" selection-start-line="20" selection-start-column="19" selection-end-line="20" selection-end-column="19" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/server-bc/src/main/resources/managed_mapper/IRecruitRecordMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="60" column="47" selection-start-line="60" selection-start-column="47" selection-end-line="60" selection-end-column="47" />
+          <folding>
+            <element signature="n#select#0;n#mapper#0;n#!!top" />
+          </folding>
         </state>
       </provider>
     </entry>

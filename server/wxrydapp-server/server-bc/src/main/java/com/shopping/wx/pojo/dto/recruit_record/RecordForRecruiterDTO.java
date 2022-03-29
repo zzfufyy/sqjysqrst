@@ -2,24 +2,29 @@ package com.shopping.wx.pojo.dto.recruit_record;
 
 import lombok.Data;
 
+import java.util.Date;
+
 /**
- * @ClassName DeliveredJobDTO
- * @Description 已投递岗位
+ * @ClassName RecordForRecruiterDTO
+ * @Description  招聘人查看 招聘列表
  * @Author zyw
  * @Date 2022/3/29
  **/
 @Data
-public class JobDeliveredDTO {
+public class RecordForRecruiterDTO {
+    String recordUuid;
     Integer flowRecruit;
     String candidateOpenid;
     String recruiterOpenid;
     String companyUuid;
     String jobUuid;
     String jobName;
-    String companyName;
-    String portraitPath;
-    Integer jobSalaryMin;
+    String  companyName;
     Integer jobSalaryMax;
+    Integer jobSalaryMin;
+    String realName;
+    Integer gender;
+    Date birthday;
     String telephone;
-    Double distance;
+    Date createTime;
 }

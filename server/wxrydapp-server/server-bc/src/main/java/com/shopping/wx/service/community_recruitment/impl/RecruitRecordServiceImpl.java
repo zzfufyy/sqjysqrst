@@ -2,7 +2,8 @@ package com.shopping.wx.service.community_recruitment.impl;
 
 import com.shopping.wx.managed_mapper.community_recruitment.IRecruitRecordMapper;
 import com.shopping.wx.model.RecruitRecord;
-import com.shopping.wx.pojo.dto.recruit_record.JobDeliveredDTO;
+import com.shopping.wx.pojo.dto.recruit_record.RecordForCandidateDTO;
+import com.shopping.wx.pojo.dto.recruit_record.RecordForRecruiterDTO;
 import com.shopping.wx.pojo.vo.basic.PagingParam;
 import com.shopping.wx.pojo.vo.common.Location;
 import com.shopping.wx.pojo.vo.recruit_record.RecruitRecordSearchCondition;
@@ -41,7 +42,12 @@ public class RecruitRecordServiceImpl extends CrudServiceImpl<RecruitRecord> imp
     }
 
     @Override
-    public List<JobDeliveredDTO> listDeliveredByCandidateOpenid(String candidateOpenid, Location location) {
-        return iRecruitRecordMapper.listDeliveredByCandidateOpenid(candidateOpenid, location);
+    public List<RecordForCandidateDTO> listRecordPlusByCandidateOpenid(String candidateOpenid, Location location) {
+        return iRecruitRecordMapper.listRecordPlusByCandidateOpenid(candidateOpenid, location);
+    }
+
+    @Override
+    public List<RecordForRecruiterDTO> listRecordPlusByCompanyUuid(String companyUuid) {
+        return iRecruitRecordMapper.listRecordPlusByCompanyUuid(companyUuid);
     }
 }
