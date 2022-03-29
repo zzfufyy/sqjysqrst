@@ -1,6 +1,7 @@
 /target/
 /.svn/
 /.idea/
+*/.idea/*
 
 target/
 .svn/
