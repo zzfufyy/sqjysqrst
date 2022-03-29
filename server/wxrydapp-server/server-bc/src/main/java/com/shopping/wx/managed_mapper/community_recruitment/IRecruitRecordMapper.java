@@ -1,6 +1,6 @@
 package com.shopping.wx.managed_mapper.community_recruitment;
 
-import com.shopping.wx.pojo.dto.recruit_job.JobInfoDTO;
+import com.shopping.wx.pojo.dto.recruit_record.JobDeliveredDTO;
 import com.shopping.wx.pojo.vo.common.Location;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -13,14 +13,14 @@ import java.util.List;
  */
 
 @Mapper
-public interface IRecruitJobMapper {
+public interface IRecruitRecordMapper {
     /**
-     * 根据位置进行分页查询
+     * 根据 用户openid 和位置查询列表
      *
      * @param location 位置（经纬度）
      * @return 结果
      */
-    List<JobInfoDTO> pagedByDistance(@Param("location") Location location);
+    List<JobDeliveredDTO> listDeliveredByCandidateOpenid(@Param("candidateOpenid") String candidateOpenid, @Param("location") Location location);
 
-
+    
 }

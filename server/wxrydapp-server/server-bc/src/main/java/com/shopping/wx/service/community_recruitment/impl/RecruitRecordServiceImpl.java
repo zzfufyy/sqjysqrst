@@ -1,19 +1,15 @@
 package com.shopping.wx.service.community_recruitment.impl;
 
-import com.shopping.wx.model.RecruitJob;
+import com.shopping.wx.managed_mapper.community_recruitment.IRecruitRecordMapper;
 import com.shopping.wx.model.RecruitRecord;
+import com.shopping.wx.pojo.dto.recruit_record.JobDeliveredDTO;
 import com.shopping.wx.pojo.vo.basic.PagingParam;
+import com.shopping.wx.pojo.vo.common.Location;
 import com.shopping.wx.pojo.vo.recruit_record.RecruitRecordSearchCondition;
 import com.shopping.wx.service.basic.impl.CrudServiceImpl;
 import com.shopping.wx.service.community_recruitment.RecruitRecordService;
-import com.shopping.wx.util.query_utils.Paging;
-import com.shopping.wx.util.query_utils.QueryUtils;
-import com.shopping.wx.util.query_utils.WhereClauseBuilder;
-import com.shopping.wx.util.query_utils.impl.CustomPaging;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import tk.mybatis.mapper.entity.Example;
-import tk.mybatis.mapper.entity.Example.Criteria;
-import tk.mybatis.mapper.weekend.Weekend;
 
 import java.util.List;
 
@@ -24,6 +20,8 @@ import java.util.List;
 
 @Service
 public class RecruitRecordServiceImpl extends CrudServiceImpl<RecruitRecord> implements RecruitRecordService {
+    @Autowired
+    IRecruitRecordMapper iRecruitRecordMapper;
 
     @Override
     public List<RecruitRecord> page(PagingParam<RecruitRecordSearchCondition> pagingParam) {
@@ -40,5 +38,10 @@ public class RecruitRecordServiceImpl extends CrudServiceImpl<RecruitRecord> imp
                 // 查看状态
                 .notNullEq(condition.getFlagViewReceive(), RecruitRecord::getFlagViewReceive)
         );
+    }
+
+    @Override
+    public List<JobDeliveredDTO> listDeliveredByCandidateOpenid(String candidateOpenid, Location location) {
+        return iRecruitRecordMapper.listDeliveredByCandidateOpenid(candidateOpenid, location);
     }
 }

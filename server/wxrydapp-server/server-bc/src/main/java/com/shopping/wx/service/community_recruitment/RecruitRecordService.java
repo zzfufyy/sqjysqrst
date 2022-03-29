@@ -1,7 +1,9 @@
 package com.shopping.wx.service.community_recruitment;
 
 import com.shopping.wx.model.RecruitRecord;
+import com.shopping.wx.pojo.dto.recruit_record.JobDeliveredDTO;
 import com.shopping.wx.pojo.vo.basic.PagingParam;
+import com.shopping.wx.pojo.vo.common.Location;
 import com.shopping.wx.pojo.vo.recruit_record.RecruitRecordSearchCondition;
 import com.shopping.wx.service.basic.CrudService;
 
@@ -16,4 +18,7 @@ import java.util.List;
 public interface RecruitRecordService extends CrudService<RecruitRecord> {
 
     List<RecruitRecord> page(PagingParam<RecruitRecordSearchCondition> pagingParam);
+
+
+    List<JobDeliveredDTO> listDeliveredByCandidateOpenid(String candidateOpenid, Location location);
 }

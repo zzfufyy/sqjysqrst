@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shopping.wx.managed_mapper.community_recruitment.IRecruitRecordMapper">
+
+    <!--    对于 POJO 中的实体类，需要添加此 ResultMap 来映射字段-->
+    <resultMap id="JobDeliveredDTO" type="com.shopping.wx.pojo.dto.recruit_record.JobDeliveredDTO">
+        <result column="flow_recruit" jdbcType="INTEGER" property="flowRecruit"/>
+        <result column="candidate_openid" jdbcType="VARCHAR" property="candidateOpenid"/>
+        <result column="recruiter_openid" jdbcType="VARCHAR" property="recruiterOpenid"/>
+        <result column="company_uuid" jdbcType="VARCHAR" property="companyUuid"/>
+        <result column="job_uuid" jdbcType="VARCHAR" property="jobUuid"/>
+
+        <result column="job_name" jdbcType="VARCHAR" property="jobName"/>
+        <result column="company_name" jdbcType="VARCHAR" property="companyName"/>
+        <result column="portrait_path" jdbcType="VARCHAR" property="portraitPath"/>
+        <result column="job_salary_min" jdbcType="INTEGER" property="jobSalaryMin"/>
+        <result column="job_salary_max" jdbcType="INTEGER" property="jobSalaryMax"/>
+        <result column="telephone" jdbcType="VARCHAR" property="telephone"/>
+        <result column="distance" jdbcType="DOUBLE" property="distance"/>
+    </resultMap>
+
+    <select id="listDeliveredByCandidateOpenid" resultMap="JobDeliveredDTO">
+        SELECT
+           rr.flow_recruit          AS flow_recruit,
+           rr.candidate_openid      AS candidate_openid,
+           rr.recruiter_openid      AS recruiter_openid,
+           rr.company_uuid          AS company_uuid,
+           rr.job_uuid              AS job_uuid,
+           rj.job_name              AS job_name,
+           rj.company_name          AS company_name,
+           rc.portrait_path         AS portrait_path,
+           rj.job_salary_max        AS job_salary_max,
+           rj.job_salary_min        AS job_salary_min,
+           ur.telephone             AS telephone,
+           ST_DISTANCE_SPHERE(
+                               POINT(#{location.longitude}, #{location.latitude}),
+                               POINT(rc.`lon`, rc.`lat`)) AS `distance`
+        FROM recruit_record rr
+        LEFT JOIN recruit_job rj
+           ON rr.job_uuid = rj.id
+        LEFT JOIN user_recruiter ur
+           ON rr.recruiter_openid = ur.id
+        LEFT JOIN recruit_company rc
+           ON rr.company_uuid = rc.id
+        WHERE rr.status != -1 AND
+              rj.status != -1 AND
+              rc.status != -1 AND
+              rc.flag_identification = 1 AND
+              rr.candidate_openid = #{candidateOpenid}
+        ORDER BY distance ASC
+    </select>
+</mapper>

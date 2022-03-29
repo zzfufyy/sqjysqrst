@@ -49,6 +49,16 @@ public class UserCandidate {
     private String address;
 
     /**
+     * 经度
+     */
+    private Double lon;
+
+    /**
+     * 纬度
+     */
+    private Double lat;
+
+    /**
      * 婚姻状态：0:未婚 1:已婚
      */
     @Column(name = "marraige_state")
@@ -292,6 +302,42 @@ public class UserCandidate {
      */
     public void setAddress(String address) {
         this.address = address == null ? null : address.trim();
+    }
+
+    /**
+     * 获取经度
+     *
+     * @return lon - 经度
+     */
+    public Double getLon() {
+        return lon;
+    }
+
+    /**
+     * 设置经度
+     *
+     * @param lon 经度
+     */
+    public void setLon(Double lon) {
+        this.lon = lon;
+    }
+
+    /**
+     * 获取纬度
+     *
+     * @return lat - 纬度
+     */
+    public Double getLat() {
+        return lat;
+    }
+
+    /**
+     * 设置纬度
+     *
+     * @param lat 纬度
+     */
+    public void setLat(Double lat) {
+        this.lat = lat;
     }
 
     /**
