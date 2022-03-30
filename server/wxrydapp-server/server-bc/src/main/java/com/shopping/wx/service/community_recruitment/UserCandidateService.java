@@ -1,6 +1,8 @@
 package com.shopping.wx.service.community_recruitment;
 
 import com.shopping.wx.model.UserCandidate;
+import com.shopping.wx.pojo.dto.user_candidate.UserCandidateDTO;
+import com.shopping.wx.pojo.vo.common.Location;
 import com.shopping.wx.pojo.vo.user_candidate.UserCandidateSearchCondition;
 import com.shopping.wx.pojo.vo.basic.PagingParam;
 import com.shopping.wx.service.basic.CrudService;
@@ -27,4 +29,9 @@ public interface UserCandidateService extends CrudService<UserCandidate> {
      * }
      */
     void increaseViewCount(String openid);
+
+
+    List<UserCandidateDTO> pagedByDistance(PagingParam<Location> positionPagingParam);
+
+
 }

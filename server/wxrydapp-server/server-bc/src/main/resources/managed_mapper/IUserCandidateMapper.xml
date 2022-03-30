@@ -8,4 +8,42 @@
         set count_view=count_view + 1
         where id = #{openid}
     </update>
+
+    <resultMap id="UserCandidateDTO" type="com.shopping.wx.pojo.dto.user_candidate.UserCandidateDTO">
+        <result column="candidate_openid" jdbcType="VARCHAR" property="candidateOpenid"/>
+        <result column="real_name" jdbcType="VARCHAR" property="realName"/>
+        <result column="candidate_portrait_path" jdbcType="VARCHAR" property="candidatePortraitPath"/>
+        <result column="gender" jdbcType="INTEGER" property="gender"/>
+        <result column="birthday" jdbcType="TIMESTAMP" property="birthday"/>
+        <result column="expect_salary_max" jdbcType="INTEGER" property="expectSalaryMax"/>
+        <result column="expect_salary_min" jdbcType="INTEGER" property="expectSalaryMin"/>
+        <result column="expect_category_id" jdbcType="VARCHAR" property="expectCategoryId"/>
+        <result column="expect_community_id" jdbcType="VARCHAR" property="expectCommunityId"/>
+        <result column="community_name" jdbcType="VARCHAR" property="communityName"/>
+        <result column="distance" jdbcType="DOUBLE" property="distance"/>
+    </resultMap>
+    <select id="pagedByDistance" resultMap="UserCandidateDTO">
+        SELECT
+            uc.id                     as candidate_openid,
+            uc.real_name              as real_name,
+            buw.avatarurl             as candidate_portrait_path,
+            uc.gender                 as gender,
+            uc.birthday               as birthday,
+            uc.expect_salary_max      as expect_salary_max,
+            uc.expect_salary_min      as expect_salary_min,
+            uc.expect_category_id     as expect_category_id,
+            uc.expect_community_id    as expect_community_id,
+            ci.community_name         as community_name,
+            ST_DISTANCE_SPHERE(
+                               POINT(#{location.longitude}, #{location.latitude}),
+                               POINT(uc.`lon`, uc.`lat`)) AS `distance`
+            FROM user_candidate uc
+            LEFT JOIN community_information ci
+            ON uc.expect_community_id = ci.id
+            LEFT JOIN bc_user_wx buw
+            ON uc.id = buw.openid
+            WHERE uc.`status` != -1
+            ORDER BY `distance` asc
+    </select>
+
 </mapper>

@@ -5,7 +5,10 @@ import com.shopping.base.foundation.result.ActionResult;
 import com.shopping.wx.config.StorageConfig;
 import com.shopping.wx.controller.basic.CrudController;
 import com.shopping.wx.model.UserCandidate;
+import com.shopping.wx.pojo.dto.recruit_job.JobInfoDTO;
+import com.shopping.wx.pojo.dto.user_candidate.UserCandidateDTO;
 import com.shopping.wx.pojo.vo.basic.PagingParam;
+import com.shopping.wx.pojo.vo.common.Location;
 import com.shopping.wx.pojo.vo.user_candidate.UserCandidateSearchCondition;
 import com.shopping.wx.service.basic.CrudService;
 import com.shopping.wx.service.basic.UploadService;
@@ -51,6 +54,13 @@ public class UserCandidateController extends CrudController<UserCandidate, Strin
     ActionResult<?> modify(@RequestBody UserCandidate userCandidate) {
         update(userCandidate);
         return ActionResult.ok();
+    }
+
+    @PostMapping("/paged-by-distance")
+    ActionResult<PageInfo<UserCandidateDTO>> pagedByDistance(@RequestBody PagingParam<Location> pagingParam) {
+        return ActionResult.ok(
+                PageInfo.of(userCandidateService.pagedByDistance(pagingParam))
+        );
     }
 
 
