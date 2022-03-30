@@ -44,8 +44,8 @@ public class InformationNews {
     /**
      * 文章发布时间
      */
-    @Column(name = "articlen_release_time")
-    private Date articlenReleaseTime;
+    @Column(name = "article_release_time")
+    private Date articleReleaseTime;
 
     /**
      * 文章附件路径
@@ -81,6 +81,12 @@ public class InformationNews {
      */
     @Column(name = "effect_community_id")
     private String effectCommunityId;
+
+    /**
+     * 浏览量
+     */
+    @Column(name = "count_view")
+    private Integer countView;
 
     /**
      * 记录状态（0：正常 -1：过期不显示）
@@ -225,19 +231,19 @@ public class InformationNews {
     /**
      * 获取文章发布时间
      *
-     * @return articlen_release_time - 文章发布时间
+     * @return article_release_time - 文章发布时间
      */
-    public Date getArticlenReleaseTime() {
-        return articlenReleaseTime;
+    public Date getArticleReleaseTime() {
+        return articleReleaseTime;
     }
 
     /**
      * 设置文章发布时间
      *
-     * @param articlenReleaseTime 文章发布时间
+     * @param articleReleaseTime 文章发布时间
      */
-    public void setArticlenReleaseTime(Date articlenReleaseTime) {
-        this.articlenReleaseTime = articlenReleaseTime;
+    public void setArticleReleaseTime(Date articleReleaseTime) {
+        this.articleReleaseTime = articleReleaseTime;
     }
 
     /**
@@ -346,6 +352,24 @@ public class InformationNews {
      */
     public void setEffectCommunityId(String effectCommunityId) {
         this.effectCommunityId = effectCommunityId == null ? null : effectCommunityId.trim();
+    }
+
+    /**
+     * 获取浏览量
+     *
+     * @return count_view - 浏览量
+     */
+    public Integer getCountView() {
+        return countView;
+    }
+
+    /**
+     * 设置浏览量
+     *
+     * @param countView 浏览量
+     */
+    public void setCountView(Integer countView) {
+        this.countView = countView;
     }
 
     /**
