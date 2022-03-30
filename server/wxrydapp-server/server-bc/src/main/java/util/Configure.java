@@ -9,12 +9,12 @@ public class Configure {
 	
 	public static final String APP_SECRET=""; //微信公众号密钥
 // wxf5d8b17c78679c6a
-//	public static final String MINI_APP_ID="wx96d6e30c9f677d52";//线上微信小程序appid
-	public static final String MINI_APP_ID="wx8a8bbe94ca734afd";//测试微信小程序appid
+	public static final String MINI_APP_ID="wx7741a14f2a4e3776";//线上微信小程序appid
+//	public static final String MINI_APP_ID="wx8a8bbe94ca734afd";//测试微信小程序appid
 //
 //8a07f321327d6e5cf62841ff0748f05f
-//	public static final String MINI_APP_SECRET="1488cdb592b5103c5f25448c2022db9e"; //线上微信小程序密钥
-	public static final String MINI_APP_SECRET="2b0a3d5c6104fcc261c0a6976a451ae5"; //测试微信小程序密钥
+	public static final String MINI_APP_SECRET="a6b106075aabd43c2fc9d369dcc9d4d4"; //线上微信小程序密钥
+//	public static final String MINI_APP_SECRET="2b0a3d5c6104fcc261c0a6976a451ae5"; //测试微信小程序密钥
 	public static final String WX_GET_CODE_URL="https://open.weixin.qq.com/connect/oauth2/authorize?appid=APP_ID&redirect_uri=REDIRECT_URI&response_type=code&scope=snsapi_userinfo&state=123&connect_redirect=1#wechat_redirect";//微信获取codeurl
 	
 	public static final String WX_GET_ACCESS_URL="https://api.weixin.qq.com/sns/oauth2/access_token?appid=APP_ID&secret=APP_SECRET&code=USE_CODE&grant_type=authorization_code";//获取用户openid地址
