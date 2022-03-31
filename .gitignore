@@ -1,8 +1,13 @@
 /target/
 /.svn/
 /.idea/
-*/.idea/*
+/server/wxrydapp-server/.idea/workspace.xml
+/server/wxrydapp-server/server-bc/src/main/resources/wx.yml
+/server/wxrydapp-server/server-bc/src/main/resources/config/application-dev.properties
 
 target/
 .svn/
 .idea/
+server/wxrydapp-server/.idea/workspace.xml
+server/wxrydapp-server/server-bc/src/main/resources/wx.yml
+server/wxrydapp-server/server-bc/src/main/resources/config/application-dev.properties
