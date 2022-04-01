@@ -27,5 +27,7 @@ public class JobInfoDTO {
 
     Integer jobSalaryMax;
 
+    String telephone;
+
     Double distance;
 }

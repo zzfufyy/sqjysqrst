@@ -27,7 +27,7 @@ public interface RecruitJobService extends CrudService<RecruitJob> {
      * @param positionPagingParam 分页参数
      * @return 结果
      */
-    List<JobInfoDTO> pagedByDistance(PagingParam<Location> positionPagingParam);
+    List<JobInfoDTO> pagedByDistance(Integer jobSalaryMin, Integer jobSalaryMax, PagingParam<Location> positionPagingParam);
 
     /**
      * 根据公司id找发布职位

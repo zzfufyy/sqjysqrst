@@ -63,4 +63,24 @@ public interface AuditConstant {
             return value;
         }
     }
+
+    /**
+     * 薪资比较转台
+     */
+    enum SalaryCompareState {
+        NEOGIATION(0),
+        UNDERSALARY(1),
+        UPERSALARY(2),
+        BETWEENSALARY(3);
+
+        private final int value;
+
+        SalaryCompareState(int value) {
+            this.value = value;
+        }
+
+        public int getValue() {
+            return value;
+        }
+    }
 }
