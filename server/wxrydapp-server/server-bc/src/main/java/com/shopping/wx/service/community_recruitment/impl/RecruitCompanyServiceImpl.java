@@ -57,8 +57,8 @@ public class RecruitCompanyServiceImpl extends CrudServiceImpl<RecruitCompany> i
     }
 
     @Override
-    public Boolean incrCountView(String id) {
-        return iRecruitCompanyMapper.incrCountView(id) == 1 ? true : false;
+    public Boolean increaseCountView(String id) {
+        return iRecruitCompanyMapper.increaseCountView(id) == 1 ? true : false;
     }
 
 }

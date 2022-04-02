@@ -40,7 +40,7 @@
         ext2, ext3
     </sql>
 
-    <update id="incrCountView">
+    <update id="increaseCountView">
         UPDATE recruit_company SET count_view = count_view +1 WHERE id = #{id};
     </update>
 </mapper>

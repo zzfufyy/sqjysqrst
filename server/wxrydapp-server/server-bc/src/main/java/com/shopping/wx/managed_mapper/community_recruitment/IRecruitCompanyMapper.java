@@ -14,9 +14,10 @@ import org.apache.ibatis.annotations.Param;
 @Mapper
 public interface IRecruitCompanyMapper extends tk.mybatis.mapper.common.Mapper<RecruitCompany> {
     /**
-    * countView ++
-    * @param  id
-    * @return int
-    */
-    int incrCountView(@Param(value="id") String id);
+     * countView ++
+     *
+     * @param id
+     * @return int
+     */
+    int increaseCountView(@Param(value = "id") String id);
 }

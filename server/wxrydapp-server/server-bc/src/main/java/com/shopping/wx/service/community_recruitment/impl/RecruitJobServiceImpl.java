@@ -8,8 +8,10 @@ import com.shopping.wx.pojo.vo.common.Location;
 import com.shopping.wx.pojo.vo.recruit_job.RecruitJobSearchCondition;
 import com.shopping.wx.service.basic.impl.CrudServiceImpl;
 import com.shopping.wx.service.community_recruitment.RecruitJobService;
+import com.shopping.wx.util.SalaryCompareUtil;
 import com.shopping.wx.util.query_utils.QueryUtils;
 import com.shopping.wx.util.query_utils.WhereClauseBuilder;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tk.mybatis.mapper.entity.Example;
 
@@ -21,11 +23,11 @@ import java.util.List;
 @Service
 public class RecruitJobServiceImpl extends CrudServiceImpl<RecruitJob> implements RecruitJobService {
 
-    final
-    IRecruitJobMapper recruitJobMapper;
+    @Autowired
+    IRecruitJobMapper iRecruitJobMapper;
 
-    public RecruitJobServiceImpl(IRecruitJobMapper recruitJobMapper) {
-        this.recruitJobMapper = recruitJobMapper;
+    public RecruitJobServiceImpl(IRecruitJobMapper iRecruitJobMapper) {
+        this.iRecruitJobMapper = iRecruitJobMapper;
     }
 
     @Override
@@ -54,9 +56,12 @@ public class RecruitJobServiceImpl extends CrudServiceImpl<RecruitJob> implement
      * @return 结果
      */
     @Override
-    public List<JobInfoDTO> pagedByDistance(PagingParam<Location> positionPagingParam) {
+    public List<JobInfoDTO> pagedByDistance(Integer jobSalaryMin, Integer jobSalaryMax, PagingParam<Location> positionPagingParam) {
         startPage(positionPagingParam.getPage());
-        return recruitJobMapper.pagedByDistance(positionPagingParam.getCondition());
+        // 构建薪资比较模式
+        SalaryCompareUtil salaryCompareUtil = new SalaryCompareUtil(jobSalaryMin, jobSalaryMax);
+        Integer salaryCompareState = salaryCompareUtil.getCompareMode();
+        return iRecruitJobMapper.pagedByDistance(salaryCompareState,jobSalaryMin,jobSalaryMax,positionPagingParam.getCondition());
     }
 
     @Override
@@ -70,5 +75,12 @@ public class RecruitJobServiceImpl extends CrudServiceImpl<RecruitJob> implement
         );
         builder.orderByDesc(QueryUtils.getFieldName(RecruitJob::getCreateTime));
         return selectAllByExample(builder.build());
+    }
+
+    @Override
+    public Boolean increaseCountView(String id) {
+
+        return iRecruitJobMapper.increaseCountView(id) == 1 ? true : false;
+
     }
 }

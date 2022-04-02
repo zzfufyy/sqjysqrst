@@ -79,10 +79,7 @@ public class RecruitCompanyController extends CrudController<RecruitCompany, Str
         return updateVO(recruitCompany) ? ActionResult.ok() : ActionResult.error();
     }
 
-    @RequestMapping("/incrCountView")
-    public ActionResult<Boolean> incrCountView(@RequestParam String id) {
-        return recruitCompanyService.incrCountView(id) ? ActionResult.ok() : ActionResult.error();
-    }
+
 
     @RequestMapping("/uploadPortrait")
     public ActionResult<Boolean> uploadPortrait(@RequestParam String id, MultipartFile file) {
@@ -131,6 +128,11 @@ public class RecruitCompanyController extends CrudController<RecruitCompany, Str
         } else {
             return ActionResult.error(uploadResult.getMsg());
         }
+    }
+
+    @RequestMapping("/increaseCountView")
+    public ActionResult<Boolean> increaseCountView(@RequestParam String id) {
+        return recruitCompanyService.increaseCountView(id) ? ActionResult.ok() : ActionResult.error();
     }
 
 
