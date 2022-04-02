@@ -38,4 +38,12 @@ public interface RecruitJobService extends CrudService<RecruitJob> {
      */
     List<RecruitJob> listByCompanyUuid(String companyUuid, PagingParam<RecruitJobSearchCondition> pagingParam);
 
+    /**
+     * 浏览量+1
+     *
+     * @param id
+     * @return int
+     */
+    Boolean increaseCountView(String id);
+
 }

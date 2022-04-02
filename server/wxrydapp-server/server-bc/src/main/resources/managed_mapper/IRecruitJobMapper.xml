@@ -11,25 +11,29 @@
         <result column="portrait_path" jdbcType="VARCHAR" property="portraitPath"/>
         <result column="job_salary_min" jdbcType="INTEGER" property="jobSalaryMin"/>
         <result column="job_salary_max" jdbcType="INTEGER" property="jobSalaryMax"/>
+        <result column="recruiter_openid" jdbcType="VARCHAR" property="recruiterOpenid"/>
         <result column="telephone" jdbcType="VARCHAR" property="telephone"/>
         <result column="distance" jdbcType="DOUBLE" property="distance"/>
     </resultMap>
 
     <select id="pagedByDistance" resultMap="JobInfoDTO">
-        SELECT rj.`id` AS `job_id`,
-        rc.`id` AS `company_id`,
-        rj.`job_name` AS `job_name`,
-        rc.`company_name` AS `company_name`,
-        rc.`portrait_path` AS `portrait_path`,
-        rj.`job_salary_min` AS `job_salary_min`,
-        rj.`job_salary_max` AS `job_salary_max`,
-        ur.`telephone` AS `telephone`,
-        ST_DISTANCE_SPHERE(
-        POINT(#{location.longitude}, #{location.latitude}),
-        POINT(rc.`lon`, rc.`lat`)) AS `distance`
+        SELECT
+            rj.`id`             AS `job_id`,
+            rc.`id`             AS `company_id`,
+            rj.`job_name`       AS `job_name`,
+            rc.`company_name`   AS `company_name`,
+            rc.`portrait_path`  AS `portrait_path`,
+            rj.`job_salary_min` AS `job_salary_min`,
+            rj.`job_salary_max` AS `job_salary_max`,
+            ur.`id`             AS `recruiter_openid`,
+            ur.`telephone`      AS `telephone`,
+            ST_DISTANCE_SPHERE(
+              POINT(#{location.longitude}, #{location.latitude}),
+              POINT(rc.`lon`, rc.`lat`)
+            ) AS `distance`
         FROM recruit_job rj
         LEFT JOIN recruit_company rc ON rj.`company_uuid` = rc.`id`
-        LEFT JOIN user_recruiter ur ON rj.`recruiter_openid` = ur.`id`
+        LEFT JOIN user_recruiter ur  ON rj.`recruiter_openid` = ur.`id`
         WHERE 1=1
         AND rj.`status` != - 1
         AND rc.`status` != - 1
@@ -56,4 +60,9 @@
         </if>
         ORDER BY `distance`
     </select>
+
+
+    <update id="increaseCountView">
+        UPDATE recruit_job SET count_view = count_view +1 WHERE id = #{id};
+    </update>
 </mapper>

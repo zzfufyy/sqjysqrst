@@ -81,7 +81,7 @@
            uc.gender                AS gender,
            uc.birthday              AS birthday,
            uc.telephone             AS telephone,
-          rr.create_time           AS create_time
+           rr.create_time           AS create_time
         FROM recruit_record rr
         LEFT JOIN recruit_job rj
            ON rr.job_uuid = rj.id

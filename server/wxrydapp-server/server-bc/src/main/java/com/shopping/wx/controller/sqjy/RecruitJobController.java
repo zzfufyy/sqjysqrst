@@ -89,6 +89,12 @@ public class RecruitJobController extends CrudController<RecruitJob, String> {
         return ActionResult.ok();
     }
 
+    @RequestMapping("/increaseCountView")
+    public ActionResult<Boolean> increaseCountView(@RequestParam String id) {
+        return recruitJobService.increaseCountView(id) ? ActionResult.ok() : ActionResult.error();
+    }
+
+
     @Override
     protected CrudService<RecruitJob> getService() {
         return recruitJobService;

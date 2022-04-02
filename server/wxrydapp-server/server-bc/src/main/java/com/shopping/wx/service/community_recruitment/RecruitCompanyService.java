@@ -30,6 +30,6 @@ public interface RecruitCompanyService extends CrudService<RecruitCompany> {
      * @param id
      * @return int
      */
-    Boolean incrCountView(String id);
+    Boolean increaseCountView(String id);
 
 }
