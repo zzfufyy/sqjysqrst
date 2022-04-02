@@ -58,4 +58,29 @@ public class ViewRecordController {
         json.setObj(map);
         return json;
     }
+
+    @RequestMapping("/getjobs")
+    public JSON getjobs(Page page,String jobid,String openid) {
+        JSON json = new JSON();
+        HashMap map = new HashMap();
+        UserCandidate userCandidate =db.selectById(openid,UserCandidate.class);
+        String[] zwids = jobid.split(",");
+        String zwname ="";
+        List<JobCategory> joblist = new ArrayList<>();
+        for (int i = 0; i <zwids.length ; i++) {
+            JobCategory jobCategory = db.selectById(zwids[i],JobCategory.class);
+            if(i==0){
+                zwname+=jobCategory.getCategoryName();
+            }else {
+                zwname+=","+jobCategory.getCategoryName();
+            }
+            joblist.add(jobCategory);
+        }
+        map.put("zwname",zwname);
+        map.put("joblist",joblist);
+        json.setObj(map);
+        return json;
+    }
+
+
 }

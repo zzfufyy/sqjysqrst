@@ -71,8 +71,11 @@ public class AboutController {
         Example.Criteria criteria =example.createCriteria();
         criteria.andEqualTo("openid",openid);
         List<UserWxInfo> bcUserWxList=db.selectAllByExample(UserWxInfo.class,example);
+        UserCandidate userCandidate =db.selectById(openid,UserCandidate.class);
+        userCandidate.setTelephone(phone);
         bcUserWxList.get(0).setUnionid(phone);
         db.update(bcUserWxList.get(0));
+        db.update(userCandidate);
         return json;
     }
 
