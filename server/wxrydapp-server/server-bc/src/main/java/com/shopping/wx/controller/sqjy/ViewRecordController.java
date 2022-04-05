@@ -1,18 +1,20 @@
 package com.shopping.wx.controller.sqjy;
 
+import com.github.pagehelper.PageInfo;
 import com.shopping.base.foundation.result.ActionResult;
 import com.shopping.wx.conf.DB;
 import com.shopping.wx.conf.Page;
 import com.shopping.wx.controller.basic.CrudController;
 import com.shopping.wx.entity.JSON;
 import com.shopping.wx.model.*;
+import com.shopping.wx.pojo.dto.recruit_job.JobInfoDTO;
+import com.shopping.wx.pojo.dto.view_record.ViewRecordDTO;
+import com.shopping.wx.pojo.vo.basic.PagingParam;
+import com.shopping.wx.pojo.vo.common.Location;
 import com.shopping.wx.service.basic.CrudService;
 import com.shopping.wx.service.community_recruitment.ViewRecordService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import tk.mybatis.mapper.entity.Example;
 
 import java.util.ArrayList;
@@ -139,6 +141,22 @@ public class ViewRecordController extends CrudController<ViewRecord, String> {
             update(currentViewRecord);
         }
         return ActionResult.ok(true);
+    }
+
+    @RequestMapping("/countByCandidateOpenid")
+    ActionResult<Long> pagedByDistance(@RequestParam String candidateOpenid) {
+        ViewRecord viewRecord = new ViewRecord();
+        viewRecord.setCandidateOpenid(candidateOpenid);
+        return ActionResult.ok(
+                viewRecordService.selectCount(viewRecord)
+        );
+    }
+
+    @PostMapping("/paged-by-distance")
+    ActionResult<PageInfo<ViewRecordDTO>> pagedByDistance(@RequestBody PagingParam<String> pagingParam) {
+        return ActionResult.ok(
+                PageInfo.of(viewRecordService.pagedByDistance(pagingParam))
+        );
     }
 
 
