@@ -24,10 +24,10 @@ public interface JobCategoryService extends CrudService<JobCategory> {
 
     /**
     * list列表
-    * @param  pagingParam
+    * @param  categoryName
     * @return java.util.List<com.shopping.wx.model.JobCategory> 
     */
-    List<JobCategory> list(PagingParam<JobCategorySearchCondition> pagingParam);
+    List<JobCategory> list(String categoryName);
         
     /**
      * 浏览量自增

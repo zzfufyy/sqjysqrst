@@ -1,21 +1,13 @@
 package com.shopping.wx.controller.sqjy;
 
-import com.github.pagehelper.PageInfo;
 import com.shopping.base.foundation.result.ActionResult;
-import com.shopping.wx.constant.AuditConstant;
 import com.shopping.wx.controller.basic.CrudController;
+import com.shopping.wx.model.CandidateForCategory;
 import com.shopping.wx.model.CompanyForCategory;
-import com.shopping.wx.model.RecruitCompany;
-import com.shopping.wx.pojo.vo.basic.PagingParam;
-import com.shopping.wx.pojo.vo.recruit_company.RecruitCompanySearchCondition;
 import com.shopping.wx.service.basic.CrudService;
-import com.shopping.wx.service.basic.UploadService;
 import com.shopping.wx.service.community_recruitment.CompanyForCategoryService;
-import com.shopping.wx.service.community_recruitment.RecruitCompanyService;
-import com.shopping.wx.service.community_recruitment.UserRecruiterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -41,18 +33,17 @@ public class CompanyForCategoryController extends CrudController<CompanyForCateg
     }
 
     @RequestMapping("/add")
-    public ActionResult<String> add(@RequestBody List<CompanyForCategory> categoryList) {
+    public ActionResult<String> add(@RequestParam String companyUuid, @RequestBody List<CompanyForCategory> categoryList) {
 
-        // 取出岗位类别名字列表
-        List<String> categoryNameList = companyForCategoryService.selectCategoryNameListByCompanyUuid(categoryList.get(0).getCompanyUuid());
-        // 遍历无重复即插入
-        categoryList.forEach(r -> {
-            if(!categoryNameList.contains(r.getCategoryName())){
-                insert(r);
-            }
-        });
+        // 删除该openid相关职业记录
+        CompanyForCategory companyForCategory = new CompanyForCategory();
+        companyForCategory.setCompanyUuid(companyUuid);
+        companyForCategoryService.delete(companyForCategory);
+        // 插入数据
+        categoryList.forEach(r -> insert(r));
         return ActionResult.ok();
     }
+
     @Override
     protected CrudService<CompanyForCategory> getService() {
         return companyForCategoryService;

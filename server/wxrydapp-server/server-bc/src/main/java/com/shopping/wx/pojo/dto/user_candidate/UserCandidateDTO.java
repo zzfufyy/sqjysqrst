@@ -20,6 +20,7 @@ public class UserCandidateDTO {
     Integer expectSalaryMax;
     Integer expectSalaryMin;
     String expectCategoryId;
+    String categoryName;
     String expectCommunityId;
     String communityName;
     Double distance;

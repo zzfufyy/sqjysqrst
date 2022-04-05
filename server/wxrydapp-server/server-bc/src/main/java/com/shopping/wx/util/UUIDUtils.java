@@ -17,4 +17,7 @@ public class UUIDUtils {
     public static String timeBaseUUID() {
         return UuidUtil.getTimeBasedUuid().toString();
     }
+
+    public static void main(String[] args) {
+    }
 }

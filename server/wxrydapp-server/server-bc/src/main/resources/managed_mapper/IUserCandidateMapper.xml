@@ -18,32 +18,73 @@
         <result column="expect_salary_max" jdbcType="INTEGER" property="expectSalaryMax"/>
         <result column="expect_salary_min" jdbcType="INTEGER" property="expectSalaryMin"/>
         <result column="expect_category_id" jdbcType="VARCHAR" property="expectCategoryId"/>
+        <result column="category_name" jdbcType="VARCHAR" property="categoryName"/>
         <result column="expect_community_id" jdbcType="VARCHAR" property="expectCommunityId"/>
         <result column="community_name" jdbcType="VARCHAR" property="communityName"/>
         <result column="distance" jdbcType="DOUBLE" property="distance"/>
     </resultMap>
     <select id="pagedByDistance" resultMap="UserCandidateDTO">
         SELECT
-            uc.id                     as candidate_openid,
-            uc.real_name              as real_name,
-            buw.avatarurl             as candidate_portrait_path,
-            uc.gender                 as gender,
-            uc.birthday               as birthday,
-            uc.expect_salary_max      as expect_salary_max,
-            uc.expect_salary_min      as expect_salary_min,
-            uc.expect_category_id     as expect_category_id,
-            uc.expect_community_id    as expect_community_id,
-            ci.community_name         as community_name,
-            ST_DISTANCE_SPHERE(
-                               POINT(#{location.longitude}, #{location.latitude}),
-                               POINT(uc.`lon`, uc.`lat`)) AS `distance`
-            FROM user_candidate uc
-            LEFT JOIN community_information ci
-            ON uc.expect_community_id = ci.id
-            LEFT JOIN bc_user_wx buw
-            ON uc.id = buw.openid
-            WHERE uc.`status` != -1
-            ORDER BY `distance` asc
+        candidate_openid AS candidate_openid,
+        real_name AS real_name,
+        candidate_portrait_path AS candidate_portrait_path,
+        gender AS gender,
+        birthday AS birthday,
+        expect_salary_max AS expect_salary_max,
+        expect_salary_min AS expect_salary_min,
+        distance as distance,
+        GROUP_CONCAT(distinct expect_category_id SEPARATOR ',') as expect_category_id,
+        GROUP_CONCAT(distinct category_name SEPARATOR ',') as category_name,
+        GROUP_CONCAT(distinct expect_community_id SEPARATOR ',') as expect_community_id,
+        GROUP_CONCAT(distinct community_name SEPARATOR ',') as community_name
+        FROM(
+        SELECT
+        uc.id as candidate_openid,
+        uc.real_name as real_name,
+        uc.portrait_path as candidate_portrait_path,
+        uc.gender as gender,
+        uc.birthday as birthday,
+        uc.expect_salary_max as expect_salary_max,
+        uc.expect_salary_min as expect_salary_min,
+        ST_DISTANCE_SPHERE(
+        POINT(#{location.longitude}, #{location.latitude}),
+        POINT(uc.`lon`, uc.`lat`))
+        AS `distance`,
+        cfca.category_uuid as expect_category_id,
+        cfca.category_name as category_name,
+        cfco.community_uuid as expect_community_id,
+        cfco.community_name as community_name
+        FROM user_candidate uc
+        LEFT JOIN candidate_for_category cfca
+        ON uc.id = cfca.candidate_openid
+        LEFT JOIN candidate_for_community cfco
+        ON uc.id = cfco.candidate_openid
+        WHERE uc.`status` != -1
+        -- 薪资条件拼接
+        <if test="salaryCompareState == 0">
+            AND uc.expect_salary_min = 0
+            AND uc.expect_salary_max = 0
+        </if>
+        <if test="salaryCompareState == 1">
+            AND uc.expect_salary_min = 0
+            AND uc.expect_salary_max > 0
+            AND uc.expect_salary_max <![CDATA[ <  ]]> #{jobSalaryMax}
+
+        </if>
+        <if test="salaryCompareState == 2">
+            AND uc.expect_salary_min > 0
+            AND uc.expect_salary_max = 0
+            AND uc.expect_salary_min <![CDATA[ >  ]]> #{jobSalaryMin}
+        </if>
+        <if test="salaryCompareState == 3">
+            AND uc.expect_salary_min <![CDATA[ >=  ]]> #{jobSalaryMin}
+            AND uc.expect_salary_max <![CDATA[ <=  ]]> #{jobSalaryMax}
+        </if>
+        ) a
+        GROUP BY
+        candidate_openid,real_name,candidate_portrait_path,gender,birthday,expect_salary_max,expect_salary_min,distance
+        ORDER BY `distance` asc
+
     </select>
 
 </mapper>

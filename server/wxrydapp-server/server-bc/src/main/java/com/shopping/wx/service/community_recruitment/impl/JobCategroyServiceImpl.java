@@ -14,6 +14,8 @@ import com.shopping.wx.util.query_utils.WhereClauseBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tk.mybatis.mapper.entity.Example;
+import tk.mybatis.mapper.util.Sqls;
+import tk.mybatis.mapper.util.StringUtil;
 
 import java.util.List;
 
@@ -28,17 +30,18 @@ public class JobCategroyServiceImpl extends CrudServiceImpl<JobCategory> impleme
 
     @Autowired
     IJobCategoryMapper iJobCategoryMapper;
+
     @Override
     public List<JobCategory> page(PagingParam<JobCategorySearchCondition> pagingParam) {
         JobCategorySearchCondition condition = pagingParam.getCondition();
         return pagingByBuilder(pagingParam.getPage(),
                 builder -> {
-                    if(condition == null){
+                    if (condition == null) {
                         return;
                     }
                     builder.andWhere(
                             new WhereClauseBuilder<JobCategory>()
-                            .notDeleted()
+                                    .notDeleted()
                                     // 标签名称 模糊
                                     .notEmptyLike(condition.getCategoryName(), JobCategory::getCategoryName)
                                     // 关键词 模糊
@@ -57,23 +60,27 @@ public class JobCategroyServiceImpl extends CrudServiceImpl<JobCategory> impleme
     }
 
     @Override
-    public List<JobCategory> list(PagingParam<JobCategorySearchCondition> pagingParam) {
-            JobCategorySearchCondition condition = pagingParam.getCondition();
+    public List<JobCategory> list(String categoryName) {
         Example.Builder builder = new Example.Builder(getEntityClass());
         builder.where(
                 new WhereClauseBuilder<JobCategory>()
                         .notDeleted()
                         .getSqls()
         );
+
+        // 模糊查询 分类名称
+        if (!StringUtil.isEmpty(categoryName)){
+            builder.andWhere(Sqls.custom().andLike("categoryName", "%" + categoryName + "%"));
+        }
         builder.orderByDesc(QueryUtils.getFieldName(JobCategory::getPriority));
         builder.orderByDesc(QueryUtils.getFieldName(JobCategory::getCountView));
         return selectAllByExample(builder.build());
     }
 
     @Override
-    public long selectCountByCategoryName(String categoryName){
+    public long selectCountByCategoryName(String categoryName) {
         Example.Builder builder = new Example.Builder(getEntityClass());
-        builder.where( new WhereClauseBuilder<JobCategory>()
+        builder.where(new WhereClauseBuilder<JobCategory>()
                 .notEmptyEq(categoryName, JobCategory::getCategoryName)
                 .getSqls()
         );

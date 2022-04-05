@@ -8,6 +8,7 @@ import com.shopping.wx.pojo.vo.user_candidate.UserCandidateSearchCondition;
 import com.shopping.wx.pojo.vo.basic.PagingParam;
 import com.shopping.wx.service.basic.impl.CrudServiceImpl;
 import com.shopping.wx.service.community_recruitment.UserCandidateService;
+import com.shopping.wx.util.SalaryCompareUtil;
 import com.shopping.wx.util.query_utils.QueryUtils;
 import org.springframework.stereotype.Service;
 
@@ -54,8 +55,11 @@ public class UserCandidateServiceImpl extends CrudServiceImpl<UserCandidate> imp
     }
 
     @Override
-    public List<UserCandidateDTO> pagedByDistance(PagingParam<Location> positionPagingParam) {
+    public List<UserCandidateDTO> pagedByDistance(Integer jobSalaryMin, Integer jobSalaryMax, PagingParam<Location> positionPagingParam) {
         startPage(positionPagingParam.getPage());
-        return userCandidateMapper.pagedByDistance(positionPagingParam.getCondition());
+        // 构建薪资比较模式
+        SalaryCompareUtil salaryCompareUtil = new SalaryCompareUtil(jobSalaryMin, jobSalaryMax);
+        Integer salaryCompareState = salaryCompareUtil.getCompareMode();
+        return userCandidateMapper.pagedByDistance(salaryCompareState,jobSalaryMin,jobSalaryMax,positionPagingParam.getCondition());
     }
 }

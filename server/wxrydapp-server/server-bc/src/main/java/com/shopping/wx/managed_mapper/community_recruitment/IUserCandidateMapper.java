@@ -19,5 +19,5 @@ public interface IUserCandidateMapper {
      */
     void increaseViewCount(@Param("openid") String openid);
 
-    List<UserCandidateDTO> pagedByDistance(@Param("location") Location location);
+    List<UserCandidateDTO> pagedByDistance(Integer salaryCompareState, Integer jobSalaryMin, Integer jobSalaryMax,@Param("location") Location location);
 }

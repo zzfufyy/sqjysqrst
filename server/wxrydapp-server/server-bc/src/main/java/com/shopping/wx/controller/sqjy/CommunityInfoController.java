@@ -139,7 +139,7 @@ public class CommunityInfoController extends CrudController<CommunityInformation
         return json;
     }
     @RequestMapping("/getjobandCom")
-    public JSON getjobandCom(String zwid, String areaid,Page page){
+    public JSON getjobandCom(String zwid, String areaid, Page page){
         JSON json = new JSON();
         String[] zwids = zwid.split(",");
         String[] areaids= areaid.split(",");

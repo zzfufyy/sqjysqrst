@@ -62,6 +62,17 @@ public class RecruitRecordController extends CrudController<RecruitRecord, Strin
                 PageInfo.of(recruitRecordService.page(pagingParam))
         );
     }
+
+    @GetMapping("/countByCandidateOpenid")
+    ActionResult<Long> countByCandidateOpenid(String candidateOpenid) {
+        RecruitRecord  recruitRecord = new RecruitRecord();
+        recruitRecord.setCandidateOpenid(candidateOpenid);
+        return ActionResult.ok(
+                recruitRecordService.selectCount(recruitRecord)
+        );
+    }
+
+
     @RequestMapping("/listRecordPlusByCandidateOpenid")
     ActionResult<List<RecordForCandidateDTO>> listRecordPlusByCandidateOpenid(String candidateOpenid) {
         // 加载位置参数

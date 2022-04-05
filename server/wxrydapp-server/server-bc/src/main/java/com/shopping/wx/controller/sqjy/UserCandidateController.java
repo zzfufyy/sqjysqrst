@@ -4,7 +4,9 @@ import com.github.pagehelper.PageInfo;
 import com.shopping.base.foundation.result.ActionResult;
 import com.shopping.wx.config.StorageConfig;
 import com.shopping.wx.controller.basic.CrudController;
+import com.shopping.wx.model.RecruitCompany;
 import com.shopping.wx.model.UserCandidate;
+import com.shopping.wx.model.UserRecruiter;
 import com.shopping.wx.pojo.dto.recruit_job.JobInfoDTO;
 import com.shopping.wx.pojo.dto.user_candidate.UserCandidateDTO;
 import com.shopping.wx.pojo.vo.basic.PagingParam;
@@ -41,7 +43,10 @@ public class UserCandidateController extends CrudController<UserCandidate, Strin
 
     @RequestMapping("/add")
     ActionResult<?> add(@RequestBody UserCandidate userCandidate) {
-        insert(userCandidate);
+        // 找不到再插入
+        if (userCandidateService.selectById(userCandidate.getId()) == null) {
+            insert(userCandidate);
+        }
         return ActionResult.ok();
     }
 
@@ -57,9 +62,12 @@ public class UserCandidateController extends CrudController<UserCandidate, Strin
     }
 
     @PostMapping("/paged-by-distance")
-    ActionResult<PageInfo<UserCandidateDTO>> pagedByDistance(@RequestBody PagingParam<Location> pagingParam) {
+    ActionResult<PageInfo<UserCandidateDTO>> pagedByDistance(
+            @RequestParam(required = false) Integer jobSalaryMin,
+            @RequestParam(required = false) Integer jobSalaryMax,
+            @RequestBody PagingParam<Location> pagingParam) {
         return ActionResult.ok(
-                PageInfo.of(userCandidateService.pagedByDistance(pagingParam))
+                PageInfo.of(userCandidateService.pagedByDistance(jobSalaryMin,jobSalaryMax,pagingParam))
         );
     }
 
@@ -83,23 +91,34 @@ public class UserCandidateController extends CrudController<UserCandidate, Strin
         );
     }
 
-    @PostMapping("/uploadPortrait")
-    public ActionResult<String> uploadPortrait(MultipartFile file) {
-        UploadService.UploadResult result = uploadService.uploadFile(file);
-
-        if (result.getSuccess()) {
-            return ActionResult.ok(
-                    result.getUploadUriPath()
-            );
+    @RequestMapping("/uploadPortrait")
+    public ActionResult<?> uploadPortrait(@RequestParam String id, MultipartFile file) {
+        // 可传 自定义文件夹名
+        UploadService.UploadResult uploadResult = uploadService.uploadFile(file, "");
+        if (uploadResult.getSuccess()) {
+            UserCandidate userCandidate = getEntityWithId(id);
+            userCandidate.setPortraitPath(uploadResult.getUploadUriPath());
+            return ActionResult.ok(update(userCandidate) == 1);
         } else {
-            return ActionResult.error(
-                    result.getMsg()
-            );
+            return ActionResult.error(uploadResult.getMsg());
         }
     }
+
+    @RequestMapping("/increaseCountView")
+    public ActionResult<?> increaseViewCount(@RequestParam String id) {
+        userCandidateService.increaseViewCount(id);
+        return  ActionResult.ok();
+    }
+
 
     @Override
     protected CrudService<UserCandidate> getService() {
         return userCandidateService;
+    }
+
+    private UserCandidate getEntityWithId(String openid) {
+        UserCandidate userCandidate = new UserCandidate();
+        userCandidate.setId(openid);
+        return userCandidate;
     }
 }

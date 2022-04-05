@@ -36,8 +36,12 @@ public class UserRecruiterController extends CrudController<UserRecruiter, Strin
     }
 
     @RequestMapping("/add")
-    public ActionResult<Boolean> add(@RequestBody UserRecruiter userRecruiter) {
-        return insertVO(userRecruiter) ? ActionResult.ok() : ActionResult.error();
+    public ActionResult<?> add(@RequestBody UserRecruiter userRecruiter) {
+        // 找不到再插入
+        if (userRecruiterService.selectById(userRecruiter.getId()) == null) {
+            insert(userRecruiter);
+        }
+        return ActionResult.ok();
     }
 
     @RequestMapping("/modify")
