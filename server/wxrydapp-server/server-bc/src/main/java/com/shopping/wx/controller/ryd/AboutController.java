@@ -80,6 +80,22 @@ public class AboutController {
     }
 
 
+    @RequestMapping(value = "/setWxuserandCompPhone", method = RequestMethod.GET)
+    public JSONObject setWxuserandCompPhone(String openid,String phone){
+        JSONObject json = new JSONObject();
+        Example example = new Example(UserWxInfo.class);
+        Example.Criteria criteria =example.createCriteria();
+        criteria.andEqualTo("openid",openid);
+        List<UserWxInfo> bcUserWxList=db.selectAllByExample(UserWxInfo.class,example);
+        UserRecruiter userRecruiter =db.selectById(openid,UserRecruiter.class);
+        userRecruiter.setTelephone(phone);
+        bcUserWxList.get(0).setUnionid(phone);
+        db.update(bcUserWxList.get(0));
+        db.update(userRecruiter);
+        return json;
+    }
+
+
     @RequestMapping(value = "/gettopimg", method = RequestMethod.GET)
     public JSONObject gettopimg(){
         JSONObject json = new JSONObject();

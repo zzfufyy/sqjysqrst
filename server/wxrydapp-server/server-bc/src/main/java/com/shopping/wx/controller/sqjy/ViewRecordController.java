@@ -70,6 +70,37 @@ public class ViewRecordController extends CrudController<ViewRecord, String> {
         return json;
     }
 
+    @RequestMapping("/userInfo")
+    public JSON getjobs(String ypryoppenid) {
+        JSON json = new JSON();
+        HashMap map = new HashMap();
+        UserCandidate userCandidate =db.selectById(ypryoppenid,UserCandidate.class);
+        String[] zwids = userCandidate.getExpectCategoryId().split(",");
+        String[] areaid =userCandidate.getExpectCommunityId().split(",");
+        String name ="";
+        String area ="";
+        for (int i = 0; i <zwids.length ; i++) {
+            JobCategory jobCategory=db.selectById(zwids[i],JobCategory.class);
+            if(i==0){
+                name+=jobCategory.getCategoryName();
+            }else {
+                name+=","+jobCategory.getCategoryName();
+            }
+        }
+        for (int i = 0; i <areaid.length ; i++) {
+            CommunityInformation communityInformation=db.selectById(zwids[i],CommunityInformation.class);
+            if(i==0){
+                area+=communityInformation.getCommunityName();
+            }else {
+                area+=","+communityInformation.getCommunityName();
+            }
+        }
+        userCandidate.setExt3(name);
+        userCandidate.setExt2(area);
+        map.put("userCandidate",userCandidate);
+        json.setObj(map);
+        return json;
+    }
     @RequestMapping("/getjobs")
     public JSON getjobs(Page page,String jobid,String openid) {
         JSON json = new JSON();
