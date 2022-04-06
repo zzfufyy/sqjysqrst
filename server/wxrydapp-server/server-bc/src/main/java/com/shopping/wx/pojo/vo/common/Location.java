@@ -1,6 +1,10 @@
 package com.shopping.wx.pojo.vo.common;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.io.Serializable;
 
 /**
  * @author ljy
@@ -8,7 +12,9 @@ import lombok.Data;
  */
 
 @Data
-public class Location {
+@NoArgsConstructor
+@AllArgsConstructor
+public class Location implements Serializable {
     /**
      * 经度
      */

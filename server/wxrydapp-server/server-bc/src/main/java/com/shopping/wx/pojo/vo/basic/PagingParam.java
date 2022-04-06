@@ -1,7 +1,11 @@
 package com.shopping.wx.pojo.vo.basic;
 
 import com.shopping.wx.conf.Page;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.io.Serializable;
 
 /**
  * @author ljy
@@ -10,7 +14,10 @@ import lombok.Data;
  * 分页参数和包含的搜索条件
  */
 @Data
-public class PagingParam<T> {
+@NoArgsConstructor
+@AllArgsConstructor
+public class PagingParam<T> implements Serializable {
+
     Page page;
     /**
      * 分页附带的搜索条件，注意需要检查条件是否为 null，

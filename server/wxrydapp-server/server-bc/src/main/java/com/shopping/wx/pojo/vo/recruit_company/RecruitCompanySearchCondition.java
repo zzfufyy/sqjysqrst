@@ -1,7 +1,10 @@
 package com.shopping.wx.pojo.vo.recruit_company;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -11,7 +14,9 @@ import java.util.Date;
  * @Date 2022/3/16
  **/
 @Data
-public class RecruitCompanySearchCondition {
+@NoArgsConstructor
+@AllArgsConstructor
+public class RecruitCompanySearchCondition implements Serializable {
     String id;
 
     String companyName;

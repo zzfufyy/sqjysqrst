@@ -1,13 +1,17 @@
 package com.shopping.wx.conf;
 
-public class Page {
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.io.Serializable;
+
+@NoArgsConstructor
+@AllArgsConstructor
+public class Page implements Serializable {
     private Integer page;
     private Integer rows;
-
-    public Page(Integer page, Integer rows) {
-        this.page = page;
-        this.rows = rows;
-    }
 
     public Integer getPage() {
         return page;

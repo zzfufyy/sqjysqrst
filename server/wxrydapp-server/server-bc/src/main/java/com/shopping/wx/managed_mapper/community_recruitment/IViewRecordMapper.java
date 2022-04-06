@@ -2,6 +2,7 @@ package com.shopping.wx.managed_mapper.community_recruitment;
 
 import com.shopping.wx.pojo.dto.view_record.ViewRecordDTO;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -18,6 +19,6 @@ public interface IViewRecordMapper {
      * @param  candidateOpenid 求职者id
      * @return 结果
      */
-    List<ViewRecordDTO> pagedByDistance(String candidateOpenid);
+    List<ViewRecordDTO> pagedByDistance(@Param("candidateOpenid") String candidateOpenid);
 
 }

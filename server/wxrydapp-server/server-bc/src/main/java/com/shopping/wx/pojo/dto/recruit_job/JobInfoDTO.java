@@ -1,7 +1,11 @@
 package com.shopping.wx.pojo.dto.recruit_job;
 
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.io.Serializable;
 
 /**
  * 首页显示的工作信息
@@ -11,7 +15,9 @@ import lombok.Data;
  */
 
 @Data
-public class JobInfoDTO {
+@NoArgsConstructor
+@AllArgsConstructor
+public class JobInfoDTO implements Serializable {
 
     String jobId;
 
