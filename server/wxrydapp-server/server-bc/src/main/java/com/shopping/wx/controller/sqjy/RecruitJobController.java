@@ -51,6 +51,10 @@ public class RecruitJobController extends CrudController<RecruitJob, String> {
             @RequestParam(required = false) Integer jobSalaryMin,
             @RequestParam(required = false) Integer jobSalaryMax,
             @RequestBody PagingParam<Location> pagingParam) {
+        System.out.println(jobSalaryMin);
+        System.out.println(jobSalaryMax);
+        System.out.println(pagingParam.getPage().getPage());
+        System.out.println(pagingParam.getPage().getRows());
         return ActionResult.ok(
                 PageInfo.of(recruitJobService.pagedByDistance(jobSalaryMin, jobSalaryMax, pagingParam))
         );

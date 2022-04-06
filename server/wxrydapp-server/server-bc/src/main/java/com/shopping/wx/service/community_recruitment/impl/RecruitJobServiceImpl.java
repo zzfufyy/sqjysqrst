@@ -60,7 +60,7 @@ public class RecruitJobServiceImpl extends CrudServiceImpl<RecruitJob> implement
         startPage(positionPagingParam.getPage());
         // 构建薪资比较模式
         SalaryCompareUtil salaryCompareUtil = new SalaryCompareUtil(jobSalaryMin, jobSalaryMax);
-        Integer salaryCompareState = salaryCompareUtil.getCompareMode();
+        Integer salaryCompareState = (salaryCompareUtil.getCompareMode()==null)? -1:salaryCompareUtil.getCompareMode();
         return iRecruitJobMapper.pagedByDistance(salaryCompareState,jobSalaryMin,jobSalaryMax,positionPagingParam.getCondition());
     }
 
