@@ -83,4 +83,11 @@ public class RecruitJobServiceImpl extends CrudServiceImpl<RecruitJob> implement
         return iRecruitJobMapper.increaseCountView(id) == 1 ? true : false;
 
     }
+
+    @Override
+    public Boolean increaseCountApply(String id) {
+        return iRecruitJobMapper.increaseCountApply(id) == 1 ? true : false;
+    }
+
+
 }

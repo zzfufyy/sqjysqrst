@@ -13,6 +13,7 @@ import com.shopping.wx.pojo.vo.recruit_record.RecruitRecordSearchCondition;
 import com.shopping.wx.service.basic.CrudService;
 import com.shopping.wx.service.community_recruitment.RecruitRecordService;
 import com.shopping.wx.service.community_recruitment.UserCandidateService;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -67,6 +68,13 @@ public class RecruitRecordController extends CrudController<RecruitRecord, Strin
     ActionResult<Long> countByCandidateOpenid(String candidateOpenid) {
         RecruitRecord  recruitRecord = new RecruitRecord();
         recruitRecord.setCandidateOpenid(candidateOpenid);
+        return ActionResult.ok(
+                recruitRecordService.selectCount(recruitRecord)
+        );
+    }
+
+    @PostMapping("/countByEntity")
+    ActionResult<Long> countByEntity(@RequestBody RecruitRecord recruitRecord) {
         return ActionResult.ok(
                 recruitRecordService.selectCount(recruitRecord)
         );

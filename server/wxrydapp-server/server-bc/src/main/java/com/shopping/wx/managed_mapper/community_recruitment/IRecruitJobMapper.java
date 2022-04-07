@@ -33,4 +33,12 @@ public interface IRecruitJobMapper {
      */
     int increaseCountView(@Param(value = "id") String id);
 
+    /**
+     * countView ++
+     *
+     * @param id
+     * @return int
+     */
+    int increaseCountApply(@Param(value = "id") String id);
+
 }

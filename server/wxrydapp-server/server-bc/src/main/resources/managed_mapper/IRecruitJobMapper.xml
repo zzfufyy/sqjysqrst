@@ -26,7 +26,7 @@
             rj.`job_salary_min` AS `job_salary_min`,
             rj.`job_salary_max` AS `job_salary_max`,
             ur.`id`             AS `recruiter_openid`,
-            ur.`telephone`      AS `telephone`,
+            rc.`phone`         AS `telephone`, -- 公司电话
             ST_DISTANCE_SPHERE(
               POINT(#{location.longitude}, #{location.latitude}),
               POINT(rc.`lon`, rc.`lat`)
@@ -65,4 +65,9 @@
     <update id="increaseCountView">
         UPDATE recruit_job SET count_view = count_view +1 WHERE id = #{id};
     </update>
+
+    <update id="increaseCountApply">
+        UPDATE recruit_job SET count_apply = count_apply +1 WHERE id = #{id};
+    </update>
+
 </mapper>

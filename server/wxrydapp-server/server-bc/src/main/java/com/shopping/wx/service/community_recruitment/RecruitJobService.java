@@ -46,4 +46,7 @@ public interface RecruitJobService extends CrudService<RecruitJob> {
      */
     Boolean increaseCountView(String id);
 
+    Boolean increaseCountApply(String id);
+
+
 }
