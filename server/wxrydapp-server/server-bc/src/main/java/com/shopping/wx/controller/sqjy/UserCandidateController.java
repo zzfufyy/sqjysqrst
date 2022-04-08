@@ -46,7 +46,8 @@ public class UserCandidateController extends CrudController<UserCandidate, Strin
     ActionResult<?> add(@RequestBody UserCandidate userCandidate) {
         // 找不到再插入
         if (userCandidateService.selectById(userCandidate.getId()) == null) {
-            String nickName = EmojiParser.parseToHtmlDecimal(userCandidate.getRealName());
+            String nickName = EmojiParser.parseToHtmlHexadecimal(userCandidate.getRealName());
+
             userCandidate.setRealName(nickName);
             insert(userCandidate);
         }

@@ -2,6 +2,7 @@ package com.shopping.wx.service.bc.impl;
 
 import cn.binarywang.wx.miniapp.bean.WxMaJscode2SessionResult;
 import cn.binarywang.wx.miniapp.bean.WxMaUserInfo;
+import com.github.binarywang.java.emoji.EmojiConverter;
 import com.shopping.base.domain.bc.BcUser;
 import com.shopping.base.domain.bc.BcUserDepartment;
 import com.shopping.base.domain.bc.BcUserWx;
@@ -83,7 +84,7 @@ public class BcUserWxServiceImpl  extends BaseServiceImpl<BcUserWx,Long> impleme
     public BcUserWx findByOpenid(String openid) throws Exception {
         return bcUserWxRepository.findByOpenid(openid);
     }
-
+    private EmojiConverter emojiConverter = EmojiConverter.getInstance();
     @Override
     public ActionResult saveOrUpdate(String appId, WxMaUserInfo userInfo,String openid) throws Exception {
         //先判断是否存在该记录,存在则更新,不存在则保存
@@ -91,7 +92,8 @@ public class BcUserWxServiceImpl  extends BaseServiceImpl<BcUserWx,Long> impleme
         if(bcUserWx==null) {
             bcUserWx = new BcUserWx();
         }
-        String nickName = EmojiParser.parseToHtmlDecimal(userInfo.getNickName());
+        String nickName = EmojiParser.removeAllEmojis(userInfo.getNickName());
+//        nickName= nickName.replaceAll("[\\xF0\\x9F]", "");
         bcUserWx.setAppId(appId);
         bcUserWx.setOpenid(openid);
         bcUserWx.setUnionid(userInfo.getUnionId());
