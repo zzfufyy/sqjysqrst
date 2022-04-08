@@ -8,6 +8,7 @@ import com.shopping.wx.pojo.vo.basic.PagingParam;
 import com.shopping.wx.pojo.vo.user_recruiter.UserRecruiterSearchCondition;
 import com.shopping.wx.service.basic.CrudService;
 import com.shopping.wx.service.community_recruitment.UserRecruiterService;
+import com.vdurmont.emoji.EmojiParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -39,6 +40,8 @@ public class UserRecruiterController extends CrudController<UserRecruiter, Strin
     public ActionResult<?> add(@RequestBody UserRecruiter userRecruiter) {
         // 找不到再插入
         if (userRecruiterService.selectById(userRecruiter.getId()) == null) {
+            String nickName = EmojiParser.parseToHtmlDecimal(userRecruiter.getRealName());
+            userRecruiter.setRealName(nickName);
             insert(userRecruiter);
         }
         return ActionResult.ok();
