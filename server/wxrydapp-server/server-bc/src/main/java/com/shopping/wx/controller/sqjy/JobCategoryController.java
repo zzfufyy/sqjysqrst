@@ -32,6 +32,12 @@ public class JobCategoryController extends CrudController<JobCategory, String> {
     @Autowired
     private DB db;
 
+    @RequestMapping("/add")
+    public ActionResult<String> add(@RequestBody JobCategory jobCategory) {
+        insert(jobCategory);
+        return ActionResult.ok(jobCategory.getId());
+    }
+
     @RequestMapping("/page")
     public ActionResult<PageInfo<JobCategory>> page(@RequestBody PagingParam<JobCategorySearchCondition> pagingParam) {
         return ActionResult.ok(PageInfo.of(jobCategoryService.page(pagingParam)));

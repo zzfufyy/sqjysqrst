@@ -1,5 +1,6 @@
 package com.shopping.wx.service.community_recruitment.impl;
 
+import com.shopping.wx.conf.Page;
 import com.shopping.wx.managed_mapper.community_recruitment.IJobCategoryMapper;
 import com.shopping.wx.mapper.JobCategoryMapper;
 import com.shopping.wx.model.CommunityInformation;
@@ -69,12 +70,13 @@ public class JobCategroyServiceImpl extends CrudServiceImpl<JobCategory> impleme
         );
 
         // 模糊查询 分类名称
-        if (!StringUtil.isEmpty(categoryName)){
+        if (!StringUtil.isEmpty(categoryName)) {
             builder.andWhere(Sqls.custom().andLike("categoryName", "%" + categoryName + "%"));
         }
         builder.orderByDesc(QueryUtils.getFieldName(JobCategory::getPriority));
         builder.orderByDesc(QueryUtils.getFieldName(JobCategory::getCountView));
-        return selectAllByExample(builder.build());
+        Page page = new Page(1, 13);
+        return selectPageByExample(builder.build(), page);
     }
 
     @Override
