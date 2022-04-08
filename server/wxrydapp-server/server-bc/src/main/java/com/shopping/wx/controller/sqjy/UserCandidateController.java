@@ -15,6 +15,7 @@ import com.shopping.wx.pojo.vo.user_candidate.UserCandidateSearchCondition;
 import com.shopping.wx.service.basic.CrudService;
 import com.shopping.wx.service.basic.UploadService;
 import com.shopping.wx.service.community_recruitment.UserCandidateService;
+import com.vdurmont.emoji.EmojiParser;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -45,6 +46,8 @@ public class UserCandidateController extends CrudController<UserCandidate, Strin
     ActionResult<?> add(@RequestBody UserCandidate userCandidate) {
         // 找不到再插入
         if (userCandidateService.selectById(userCandidate.getId()) == null) {
+            String nickName = EmojiParser.parseToHtmlDecimal(userCandidate.getRealName());
+            userCandidate.setRealName(nickName);
             insert(userCandidate);
         }
         return ActionResult.ok();
