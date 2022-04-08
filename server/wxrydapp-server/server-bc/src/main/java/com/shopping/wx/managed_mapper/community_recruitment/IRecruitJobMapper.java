@@ -20,7 +20,8 @@ public interface IRecruitJobMapper {
      * @param location 位置（经纬度）
      * @return 结果
      */
-    List<JobInfoDTO> pagedByDistance(@Param("salaryCompareState") Integer salaryCompareState,
+    List<JobInfoDTO> pagedByDistance(@Param("jobName") String jobName,
+                                     @Param("salaryCompareState") Integer salaryCompareState,
                                      @Param("jobSalaryMin") Integer jobSalaryMin,
                                      @Param("jobSalaryMax") Integer jobSalaryMax,
                                      @Param("location") Location location);

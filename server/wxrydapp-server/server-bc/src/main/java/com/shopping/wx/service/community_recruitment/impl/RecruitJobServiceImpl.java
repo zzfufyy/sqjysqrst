@@ -56,12 +56,12 @@ public class RecruitJobServiceImpl extends CrudServiceImpl<RecruitJob> implement
      * @return 结果
      */
     @Override
-    public List<JobInfoDTO> pagedByDistance(Integer jobSalaryMin, Integer jobSalaryMax, PagingParam<Location> positionPagingParam) {
+    public List<JobInfoDTO> pagedByDistance(String jobName, Integer jobSalaryMin, Integer jobSalaryMax, PagingParam<Location> positionPagingParam) {
         startPage(positionPagingParam.getPage());
         // 构建薪资比较模式
         SalaryCompareUtil salaryCompareUtil = new SalaryCompareUtil(jobSalaryMin, jobSalaryMax);
         Integer salaryCompareState = (salaryCompareUtil.getCompareMode()==null)? -1:salaryCompareUtil.getCompareMode();
-        return iRecruitJobMapper.pagedByDistance(salaryCompareState,jobSalaryMin,jobSalaryMax,positionPagingParam.getCondition());
+        return iRecruitJobMapper.pagedByDistance(jobName,salaryCompareState,jobSalaryMin,jobSalaryMax,positionPagingParam.getCondition());
     }
 
     @Override

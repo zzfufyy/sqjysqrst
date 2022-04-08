@@ -38,6 +38,9 @@
         AND rj.`status` != - 1
         AND rc.`status` != - 1
         AND rc.`flag_identification` = 1
+        <if test = "jobName != null and jobName != ''">
+            AND job_name like concat('%',#{jobName},'%')
+        </if>
         -- 薪资条件拼接
         <if test="salaryCompareState == 0">
             AND job_salary_min = 0

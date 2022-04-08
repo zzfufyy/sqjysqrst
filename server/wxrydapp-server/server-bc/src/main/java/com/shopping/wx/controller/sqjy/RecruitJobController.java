@@ -48,6 +48,7 @@ public class RecruitJobController extends CrudController<RecruitJob, String> {
     @PostMapping("/paged-by-distance")
     ActionResult<PageInfo<JobInfoDTO>> pagedByDistance(
             // 薪资比较参数
+            @RequestParam(required = false) String jobName,
             @RequestParam(required = false) Integer jobSalaryMin,
             @RequestParam(required = false) Integer jobSalaryMax,
             @RequestBody PagingParam<Location> pagingParam) {
@@ -56,7 +57,7 @@ public class RecruitJobController extends CrudController<RecruitJob, String> {
         System.out.println(pagingParam.getPage().getPage());
         System.out.println(pagingParam.getPage().getRows());
         return ActionResult.ok(
-                PageInfo.of(recruitJobService.pagedByDistance(jobSalaryMin, jobSalaryMax, pagingParam))
+                PageInfo.of(recruitJobService.pagedByDistance(jobName,jobSalaryMin, jobSalaryMax, pagingParam))
         );
     }
 

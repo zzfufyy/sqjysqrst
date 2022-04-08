@@ -48,7 +48,7 @@
         uc.expect_salary_min as expect_salary_min,
         ST_DISTANCE_SPHERE(
         POINT(#{location.longitude}, #{location.latitude}),
-        POINT(uc.`lon`, uc.`lat`))
+        POINT(uc.`lon`,uc.`lat`))
         AS `distance`,
         cfca.category_uuid as expect_category_id,
         cfca.category_name as category_name,
@@ -81,6 +81,7 @@
             AND uc.expect_salary_max <![CDATA[ <=  ]]> #{jobSalaryMax}
         </if>
         ) a
+        WHERE category_name is not null
         GROUP BY
         candidate_openid,real_name,candidate_portrait_path,gender,birthday,expect_salary_max,expect_salary_min,distance
         ORDER BY `distance` asc
