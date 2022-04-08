@@ -31,7 +31,7 @@ public interface UserCandidateService extends CrudService<UserCandidate> {
     void increaseViewCount(String openid);
 
 
-    List<UserCandidateDTO> pagedByDistance(Integer jobSalaryMin, Integer jobSalaryMax, PagingParam<Location> positionPagingParam);
+    List<UserCandidateDTO> pagedByDistance(String categoryName, Integer jobSalaryMin, Integer jobSalaryMax, PagingParam<Location> positionPagingParam);
 
 
 }
