@@ -38,52 +38,60 @@
         GROUP_CONCAT(distinct expect_community_id SEPARATOR ',') as expect_community_id,
         GROUP_CONCAT(distinct community_name SEPARATOR ',') as community_name
         FROM(
-        SELECT
-        uc.id as candidate_openid,
-        uc.real_name as real_name,
-        uc.portrait_path as candidate_portrait_path,
-        uc.gender as gender,
-        uc.birthday as birthday,
-        uc.expect_salary_max as expect_salary_max,
-        uc.expect_salary_min as expect_salary_min,
-        ST_DISTANCE_SPHERE(
-        POINT(#{location.longitude}, #{location.latitude}),
-        POINT(uc.`lon`,uc.`lat`))
-        AS `distance`,
-        cfca.category_uuid as expect_category_id,
-        cfca.category_name as category_name,
-        cfco.community_uuid as expect_community_id,
-        cfco.community_name as community_name
-        FROM user_candidate uc
-        LEFT JOIN candidate_for_category cfca
-        ON uc.id = cfca.candidate_openid
-        LEFT JOIN candidate_for_community cfco
-        ON uc.id = cfco.candidate_openid
-        WHERE uc.`status` != -1
-        -- 薪资条件拼接
-        <if test="salaryCompareState == 0">
-            AND uc.expect_salary_min = 0
-            AND uc.expect_salary_max = 0
-        </if>
-        <if test="salaryCompareState == 1">
-            AND uc.expect_salary_min = 0
-            AND uc.expect_salary_max > 0
-            AND uc.expect_salary_max <![CDATA[ <  ]]> #{jobSalaryMax}
+            SELECT
+            uc.id as candidate_openid,
+            uc.real_name as real_name,
+            uc.portrait_path as candidate_portrait_path,
+            uc.gender as gender,
+            uc.birthday as birthday,
+            uc.expect_salary_max as expect_salary_max,
+            uc.expect_salary_min as expect_salary_min,
+            ST_DISTANCE_SPHERE(
+            POINT(#{location.longitude}, #{location.latitude}),
+            POINT(uc.`lon`,uc.`lat`))
+            AS `distance`,
+            cfca.category_uuid as expect_category_id,
+            cfca.category_name as category_name,
+            cfco.community_uuid as expect_community_id,
+            cfco.community_name as community_name
+            FROM user_candidate uc
+            LEFT JOIN candidate_for_category cfca
+            ON uc.id = cfca.candidate_openid
+            LEFT JOIN candidate_for_community cfco
+            ON uc.id = cfco.candidate_openid
+            WHERE uc.`status` != -1
+            -- 薪资条件拼接
+            <if test="salaryCompareState == 0">
+                AND uc.expect_salary_min = 0
+                AND uc.expect_salary_max = 0
+            </if>
+            <if test="salaryCompareState == 1">
+                AND uc.expect_salary_min = 0
+                AND uc.expect_salary_max > 0
+                AND uc.expect_salary_max <![CDATA[ <=  ]]> #{jobSalaryMax}
 
-        </if>
-        <if test="salaryCompareState == 2">
-            AND uc.expect_salary_min > 0
-            AND uc.expect_salary_max = 0
-            AND uc.expect_salary_min <![CDATA[ >  ]]> #{jobSalaryMin}
-        </if>
-        <if test="salaryCompareState == 3">
-            AND uc.expect_salary_min <![CDATA[ >=  ]]> #{jobSalaryMin}
-            AND uc.expect_salary_max <![CDATA[ <=  ]]> #{jobSalaryMax}
-        </if>
+            </if>
+            <if test="salaryCompareState == 2">
+                AND uc.expect_salary_min > 0
+                AND uc.expect_salary_max = 0
+                AND uc.expect_salary_min <![CDATA[ >=  ]]> #{jobSalaryMin}
+            </if>
+            <if test="salaryCompareState == 3">
+                AND uc.expect_salary_min != 0
+                AND uc.expect_salary_max != 0
+                AND uc.expect_salary_min <![CDATA[ >=  ]]> #{jobSalaryMin}
+                AND uc.expect_salary_max <![CDATA[ <=  ]]> #{jobSalaryMax}
+            </if>
         ) a
         WHERE category_name is not null
+
+
         GROUP BY
         candidate_openid,real_name,candidate_portrait_path,gender,birthday,expect_salary_max,expect_salary_min,distance
+        <if test="categoryName != null and categoryName != ''">
+            HAVING
+            category_name like concat('%',#{categoryName},'%')
+        </if>
         ORDER BY `distance` asc
 
     </select>

@@ -55,11 +55,11 @@ public class UserCandidateServiceImpl extends CrudServiceImpl<UserCandidate> imp
     }
 
     @Override
-    public List<UserCandidateDTO> pagedByDistance(Integer jobSalaryMin, Integer jobSalaryMax, PagingParam<Location> positionPagingParam) {
+    public List<UserCandidateDTO> pagedByDistance(String categoyName, Integer jobSalaryMin, Integer jobSalaryMax, PagingParam<Location> positionPagingParam) {
         startPage(positionPagingParam.getPage());
         // 构建薪资比较模式
         SalaryCompareUtil salaryCompareUtil = new SalaryCompareUtil(jobSalaryMin, jobSalaryMax);
         Integer salaryCompareState = salaryCompareUtil.getCompareMode();
-        return userCandidateMapper.pagedByDistance(salaryCompareState,jobSalaryMin,jobSalaryMax,positionPagingParam.getCondition());
+        return userCandidateMapper.pagedByDistance(categoyName, salaryCompareState, jobSalaryMin, jobSalaryMax, positionPagingParam.getCondition());
     }
 }

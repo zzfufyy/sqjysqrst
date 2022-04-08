@@ -67,11 +67,12 @@ public class UserCandidateController extends CrudController<UserCandidate, Strin
 
     @PostMapping("/paged-by-distance")
     ActionResult<PageInfo<UserCandidateDTO>> pagedByDistance(
+            @RequestParam(required = false) String categoryName,
             @RequestParam(required = false) Integer jobSalaryMin,
             @RequestParam(required = false) Integer jobSalaryMax,
             @RequestBody PagingParam<Location> pagingParam) {
         return ActionResult.ok(
-                PageInfo.of(userCandidateService.pagedByDistance(jobSalaryMin,jobSalaryMax,pagingParam))
+                PageInfo.of(userCandidateService.pagedByDistance(categoryName,jobSalaryMin,jobSalaryMax,pagingParam))
         );
     }
 

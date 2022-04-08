@@ -49,15 +49,17 @@
         <if test="salaryCompareState == 1">
             AND job_salary_min = 0
             AND job_salary_max > 0
-            AND job_salary_max <![CDATA[ <  ]]> #{jobSalaryMax}
+            AND job_salary_max <![CDATA[ <=  ]]> #{jobSalaryMax}
 
         </if>
         <if test="salaryCompareState == 2">
             AND job_salary_min > 0
             AND job_salary_max = 0
-            AND job_salary_min <![CDATA[ >  ]]> #{jobSalaryMin}
+            AND job_salary_min <![CDATA[ >=  ]]> #{jobSalaryMin}
         </if>
         <if test="salaryCompareState == 3">
+            AND job_salary_min != 0
+            AND job_salary_max != 0
             AND job_salary_min <![CDATA[ >=  ]]> #{jobSalaryMin}
             AND job_salary_max <![CDATA[ <=  ]]> #{jobSalaryMax}
         </if>
