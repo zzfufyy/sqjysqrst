@@ -14,6 +14,7 @@ import com.shopping.wx.service.community_recruitment.JobCategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import tk.mybatis.mapper.entity.Example;
+import tk.mybatis.mapper.util.StringUtil;
 
 import java.util.List;
 
@@ -34,8 +35,12 @@ public class JobCategoryController extends CrudController<JobCategory, String> {
 
     @RequestMapping("/add")
     public ActionResult<String> add(@RequestBody JobCategory jobCategory) {
-        insert(jobCategory);
-        return ActionResult.ok(jobCategory.getId());
+        // 先查找 无重复插入
+        JobCategory jobCategoryTemp = jobCategoryService.selectOne(jobCategory);
+        if (jobCategoryTemp == null) {
+            insert(jobCategory);
+        }
+        return ActionResult.ok(jobCategoryTemp == null ? jobCategory.getId() : jobCategoryTemp.getId());
     }
 
     @RequestMapping("/page")
@@ -64,7 +69,7 @@ public class JobCategoryController extends CrudController<JobCategory, String> {
      * 返回职位列表list  -- 查询条件： category:模糊传值
      *
      * @param jobCategory
-     * @return com.shopping.base.foundation.result.ActionResult<java.util.List       <       com.shopping.wx.model.JobCategory>>
+     * @return com.shopping.base.foundation.result.ActionResult<java.util.List               <               com.shopping.wx.model.JobCategory>>
      */
     @RequestMapping("/list")
     ActionResult<List<JobCategory>> list(@RequestBody(required = false) JobCategory jobCategory) {
@@ -103,7 +108,6 @@ public class JobCategoryController extends CrudController<JobCategory, String> {
         json.setObj(jobCategoryList);
         return json;
     }
-
 
 
     @Override
